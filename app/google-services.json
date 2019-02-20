@@ -1,0 +1,55 @@
+{
+  "project_info": {
+    "project_number": "559812347088",
+    "firebase_url": "https://limpi-f52da.firebaseio.com",
+    "project_id": "limpi-f52da",
+    "storage_bucket": "limpi-f52da.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:559812347088:android:3b6897963dd5296f",
+        "android_client_info": {
+          "package_name": "com.example.firebaseedu"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "559812347088-0p2k79hfbl2k0kavmohpi9kjljo95jbq.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.firebaseedu",
+            "certificate_hash": "6b2ffdc5baf98b981961e8a007748a1716a4a4c7"
+          }
+        },
+        {
+          "client_id": "559812347088-6lts2cbcleo2mu1objme7igsskd51oat.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyC81VLN6TAoyRpe4K2YOE7rVzt9h_EtJVw"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 2,
+          "other_platform_oauth_client": [
+            {
+              "client_id": "559812347088-6lts2cbcleo2mu1objme7igsskd51oat.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
