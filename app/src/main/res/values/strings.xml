@@ -1,3 +1,21 @@
 <resources>
-    <string name="app_name">FirebaseEdu</string>
+    <string name="app_name">Limpi</string>
+    <string name="textorecuperarcontra">Te enviamos un correo con una nueva contraseña, escribela en el recuadro de abajo y cambiala por una contraseña nueva</string>
+    <string name="facebook_app_id">265705191016979</string>
+    <string name="fb_login_protocol_scheme">fb265705191016979</string>
+    <string name="txtmembre1">Tu ropa lavada y \n planchada a domicilio \n cada semana.</string>
+    <string name="txtmembre2">Elige ropa y paga por \n prenda.</string>
+    <string name="firebase_error_login">Hubo un error</string>
+    <string name="title_activity_main">MainActivity</string>
+    <string name="navigation_drawer_open">Open navigation drawer</string>
+    <string name="navigation_drawer_close">Close navigation drawer</string>
+    <string name="nav_header_title">Android Studio</string>
+    <string name="nav_header_subtitle">android.studio@android.com</string>
+    <string name="nav_header_desc">Navigation header</string>
+    <string name="action_settings">Settings</string>
+    <string name="title_activity_inicio">Inicio</string>
+    <string name="c_mo">¿Cómo podemos ayudarte?</string>
+    <string name="open">Abierto</string>
+    <string name="close">Cerrado</string>
+    <string name="c_mo_podemos_ayudarte">¿Como podemos ayudarte?</string>
 </resources>
