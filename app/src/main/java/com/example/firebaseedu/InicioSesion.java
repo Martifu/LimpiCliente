@@ -8,6 +8,7 @@ import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.text.TextUtils;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -22,6 +23,11 @@ import com.facebook.FacebookSdk;
 import com.facebook.appevents.AppEventsLogger;
 import com.facebook.login.LoginResult;
 import com.facebook.login.widget.LoginButton;
+import com.google.android.gms.auth.api.Auth;
+import com.google.android.gms.auth.api.signin.GoogleSignInAccount;
+import com.google.android.gms.auth.api.signin.GoogleSignInOptions;
+import com.google.android.gms.auth.api.signin.GoogleSignInResult;
+import com.google.android.gms.common.api.GoogleApiClient;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthCredential;
@@ -32,13 +38,17 @@ import com.google.firebase.auth.FirebaseUser;
 
 import java.util.Arrays;
 
-public class InicioSesion extends AppCompatActivity {
+public class InicioSesion extends AppCompatActivity implements GoogleApiClient.ConnectionCallbacks {
     private Button btn1;
     ProgressBar p;
     private EditText correo;
     private EditText contra;
     private FirebaseAuth firebaseAuth;
     private FirebaseAuth.AuthStateListener authStateListener;
+
+    //Componente GOOGLE
+    GoogleApiClient mGoogleApiClient;
+    LoginButton loginGoogle;
 
     //componentes FACEBOOK
     LoginButton loginButton;
@@ -53,6 +63,8 @@ public class InicioSesion extends AppCompatActivity {
         correo= findViewById(R.id.editemail);
         contra=  findViewById(R.id.editTextpassword);
         p=findViewById(R.id.progress);
+        loginButton = findViewById(R.id.login_button);
+        loginGoogle = findViewById(R.id.btn_google);
 
 
         //ocultar barra
@@ -64,6 +76,13 @@ public class InicioSesion extends AppCompatActivity {
         //Inicialización de sdk de FACEBOOK
         FacebookSdk.sdkInitialize(getApplicationContext());
         AppEventsLogger.activateApp(this);
+
+        //Creea SingIn Google opciones
+        GoogleSignInOptions gso = new GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN).requestEmail().build();
+
+        mGoogleApiClient = new GoogleApiClient.Builder(this).enableAutoManage(this, (GoogleApiClient.OnConnectionFailedListener) this)
+                .addApi(Auth.GOOGLE_SIGN_IN_API,gso)
+                .build();
 
 
         //LoginResult de FACEBOOK
@@ -141,6 +160,12 @@ public class InicioSesion extends AppCompatActivity {
     protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
         callbackManager.onActivityResult(requestCode, resultCode, data);
+
+        //Checa respuesta de logeo de Google
+        if (requestCode == 9001){
+            GoogleSignInResult resultado = Auth.GoogleSignInApi.getSignInResultFromIntent(data);
+            checarGoogle(resultado);
+        }
     }
 
 
@@ -178,20 +203,19 @@ public class InicioSesion extends AppCompatActivity {
     public void recuperapass(View view) {
     }
 
+    //METODOS GOOGLE
 
+    private void SingGoogle(){
+        Intent IntGoogle = Auth.GoogleSignInApi.getSignInIntent(mGoogleApiClient);
+        startActivityForResult(IntGoogle, 9001);
+    }
 
-
-
-
-
-
-
-
-
-
-
-
-
+    private void checarGoogle(GoogleSignInResult resultado){
+        if (resultado.isSuccess()){
+            GoogleSignInAccount cuenta = resultado.getSignInAccount();
+            Log.d("Usuario", cuenta.getDisplayName());
+        }
+    }
 
 
     @Override
@@ -206,5 +230,19 @@ public class InicioSesion extends AppCompatActivity {
     protected void onStart() {
         super.onStart();
         firebaseAuth.addAuthStateListener(authStateListener);
+    }
+
+    @Override
+    public void onConnected(@Nullable Bundle bundle) {
+
+    }
+
+    @Override
+    public void onConnectionSuspended(int i) {
+
+    }
+
+    public void googleiniciar(View view) {
+        SingGoogle();
     }
 }
