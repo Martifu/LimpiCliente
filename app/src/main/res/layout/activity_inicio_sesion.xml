@@ -25,7 +25,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:text="CORREO ELECONTRICO" />
+            android:text="CORREO ELECTRÓNICO" />
 
         <EditText
             android:id="@+id/editemail"
@@ -76,7 +76,7 @@
             android:layout_marginLeft="210dp"
             android:layout_marginTop="10dp"
             android:onClick="recuperapass"
-            android:text=" Recuperalá"
+            android:text=" Recupérala"
             android:textColor="#1491FF"
             android:textSize="13sp" />
 
@@ -110,7 +110,7 @@
             android:layout_marginLeft="220dp"
             android:layout_marginTop="30dp"
             android:onClick="registrarusuario"
-            android:text="Registrate aqui"
+            android:text="Registrate aquí"
             android:textColor="#1491FF"
             android:textSize="12sp" />
 
