@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <View
+        android:id="@+id/barra"
+        android:layout_width="fill_parent"
+        android:layout_height="200dp"
+        android:background="@drawable/gradient"
+        />
+
+        <TextView
+            android:id="@+id/hola"
+            android:layout_width="349dp"
+            android:layout_height="100dp"
+            android:layout_marginTop="50dp"
+            android:fontFamily="Trebuchet MS"
+            android:gravity="center_vertical"
+            android:text="¡Hola Usuario!"
+            android:layout_marginLeft="20dp"
+            android:textColor="#FFF"
+            android:textSize="36dp" />
+
+
+</RelativeLayout>

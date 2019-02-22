@@ -1,9 +1,225 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".home">
+    android:id="@+id/relative"
 
-</android.support.constraint.ConstraintLayout>
+    >
+
+    <android.support.v4.widget.DrawerLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:id="@+id/drawer">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+
+
+      >
+
+    <Toolbar
+        android:layout_width="match_parent"
+        android:layout_height="60dp"
+        android:background="@drawable/gradient"
+        >
+
+
+        <Button
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:layout_marginTop="20dp"
+            android:layout_marginRight="34dp"
+            android:background="@drawable/radious_image"
+            android:layout_marginLeft="16dp"
+            android:id="@+id/btn"
+
+            />
+
+        <ImageView
+            android:layout_width="60dp"
+            android:layout_height="30dp"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="20dp"
+            android:background="@drawable/limpiblanco"
+            android:id="@+id/limpi"/>
+
+    </Toolbar>
+
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
+
+        >
+        <TextView
+            android:id="@+id/ubicacion"
+            android:layout_width="334dp"
+            android:layout_height="25dp"
+            android:layout_marginLeft="1dp"
+            android:layout_marginTop="60dp"
+            android:gravity="center_vertical"
+            android:textAlignment="center"
+            android:layout_centerHorizontal="true"
+            android:textColor="#000"
+            android:textSize="12dp"
+            android:text="@string/jos_de_la_mora_ampliaci_n_los_mgeles"/>
+
+        <TextView
+            android:id="@+id/hola"
+            android:layout_width="180dp"
+            android:layout_height="55dp"
+            android:layout_marginLeft="18dp"
+            android:layout_marginTop="85dp"
+            android:gravity="center_vertical"
+            android:paddingHorizontal="45dp"
+            android:text="¡Hola"
+            android:textColor="#000"
+            android:textSize="36dp" />
+        <TextView
+            android:layout_width="337dp"
+            android:layout_height="24dp"
+            android:layout_marginLeft="0dp"
+            android:layout_marginTop="150dp"
+            android:layout_centerHorizontal="true"
+            android:textAlignment="center"
+            android:text="@string/c_mo_podemos_ayudarte"
+            android:textColor="#000"
+            android:textSize="14dp" />
+
+
+        <TextView
+            android:id="@+id/user"
+            android:layout_width="180dp"
+            android:layout_height="55dp"
+            android:layout_marginLeft="-3dp"
+            android:layout_marginTop="85dp"
+            android:layout_toRightOf="@+id/hola"
+            android:gravity="center_vertical"
+            android:text=""
+            android:textColor="#2AFFBA"
+            android:textSize="36dp" />
+        <ImageView
+        android:layout_width="135dp"
+        android:layout_height="135dp"
+        android:layout_marginTop="210dp"
+        android:src="@drawable/membresia"
+        android:layout_marginLeft="30dp"
+        android:id="@+id/membre"
+        />
+        <ImageView
+            android:layout_width="135dp"
+            android:layout_height="135dp"
+            android:src="@drawable/costura"
+            android:layout_marginLeft="30dp"
+            android:id="@+id/costura"
+            android:layout_below="@+id/membre"
+            android:layout_marginTop="40dp"
+            />
+        <ImageView
+            android:layout_width="135dp"
+            android:layout_height="135dp"
+            android:src="@drawable/zapatos"
+            android:layout_marginLeft="30dp"
+            android:id="@+id/zapatos"
+            android:layout_below="@+id/pedidos"
+            android:layout_toRightOf="@+id/costura"
+            android:layout_marginTop="40dp"
+            />
+        <ImageView
+            android:layout_width="135dp"
+            android:layout_height="135dp"
+            android:layout_marginTop="210dp"
+            android:src="@drawable/pedidos"
+            android:layout_toRightOf="@+id/membre"
+            android:layout_marginLeft="30dp"
+            android:id="@+id/pedidos"
+
+            />
+
+
+        <TextView
+            android:id="@+id/membree"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="55dp"
+            android:layout_marginTop="345dp"
+            android:text="@string/membre"
+            android:textAlignment="center"
+            android:textSize="18dp"
+            android:textColor="#000"
+
+            />
+
+        <TextView
+            android:id="@+id/pedidos2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="230dp"
+            android:layout_marginTop="345dp"
+            android:text="@string/pedidos2"
+            android:textAlignment="center"
+            android:textSize="18dp"
+            android:textColor="#000"
+            />
+
+        <TextView
+            android:id="@+id/costurera"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="55dp"
+            android:layout_marginTop="530dp"
+            android:text="@string/costura"
+            android:textAlignment="center"
+            android:textColor="#000"
+            android:textSize="18dp"
+
+            />
+
+        <TextView
+            android:id="@+id/zapatosymas"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="90dp"
+            android:layout_marginTop="530dp"
+            android:layout_toRightOf="@+id/costurera"
+            android:text="@string/zapatosymas"
+            android:textAlignment="center"
+            android:textColor="#000"
+            android:textSize="18dp"
+
+            />
+
+    </RelativeLayout>
+
+
+
+
+
+
+
+
+
+    <android.support.design.widget.NavigationView
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent"
+        style="@style/NavihatioStyle"
+        app:menu="@menu/menu_navegar"
+        app:headerLayout="@layout/cabecera"
+        android:layout_gravity="start"
+        android:background="@drawable/gradient"
+        app:itemTextColor="#F3F4F6"
+        app:itemIconTint="#26DCC4"
+        android:id="@+id/nav"
+        >
+
+    </android.support.design.widget.NavigationView>
+
+
+
+</android.support.v4.widget.DrawerLayout>
+</RelativeLayout>

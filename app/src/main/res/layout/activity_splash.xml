@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".Splash">
+
+    <View
+        android:id="@+id/canvas"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@drawable/desingsplash" />
+
+    <ImageView
+        android:id="@+id/iconolimpi"
+        android:background="@drawable/isotipogancholimpi"
+        android:layout_width="84dp"
+        android:layout_height="73dp"
+        android:layout_centerHorizontal="true"
+        android:layout_alignParentTop="true"
+        android:layout_marginTop="234dp" />
+    <ImageView
+        android:background="@drawable/logotipoblancolimpi"
+        android:layout_below="@+id/iconolimpi"
+        android:layout_centerInParent="true"
+        android:layout_width="130dp"
+        android:layout_height="53dp"
+        android:layout_alignParentTop="true"
+        android:layout_marginTop="321dp"/>
+
+
+</RelativeLayout>

@@ -10,33 +10,29 @@ import android.support.v7.app.ActionBar;
 import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
 
-public class MainActivity extends AppCompatActivity {
+public class Splash extends AppCompatActivity {
     private final int duracion = 3000;
-
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
+        setContentView(R.layout.activity_splash);
 
-        //ocultar barra
-        ActionBar actionBar = getSupportActionBar();
-        actionBar.hide();
 
         //quitar orientacion
         setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
 
         //ocultar barra
-
-
+        ActionBar actionBar = getSupportActionBar();
+        actionBar.hide();
 
         new Handler().postDelayed(new Runnable() {
             @Override
             public void run() {
-                Intent iniciosesion = new Intent(MainActivity.this, InicioSesion.class);
+                Intent iniciosesion = new Intent(Splash.this, InicioSesion.class);
                 startActivity(iniciosesion);
                 finish();
             }
         },duracion);
+
     }
 }

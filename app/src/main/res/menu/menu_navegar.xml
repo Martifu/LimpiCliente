@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+
+    >
+    <group android:checkableBehavior="single">
+
+    <item android:id="@+id/inicio" android:title="Mi perfil" />
+    <item android:id="@+id/pagos"
+        android:title="Métodos de pago" android:icon="@drawable/ic_tarjetas_svg" android:iconTint="#26DCC4"/>
+    </group>
+    <item android:id="@+id/promos" android:title="Mis promos" android:icon="@drawable/ic_cupones" android:iconTint="#26DCC4"/>
+    <item android:id="@+id/Membresias" android:title="Membresía" android:icon="@drawable/ic_memb_svg" android:iconTint="#26DCC4"/>
+    <item android:id="@+id/pedidos" android:title="Pedidos" android:icon="@drawable/ic_pedidos" android:iconTint="#26DCC4"/>
+    <item android:id="@+id/mispedidos" android:title="Mis pedidos" android:icon="@drawable/ic_mis_pedidos" android:iconTint="#26DCC4"/>
+    <item android:id="@+id/llamanos" android:title="Llámanos" android:icon="@drawable/ic_llamanos" android:iconTint="#26DCC4" />
+        <item android:id="@+id/logout" android:title="Cerrar sesión" android:icon="@drawable/ic_power"  android:iconTint="#26DCC4"  />
+
+
+</menu>
