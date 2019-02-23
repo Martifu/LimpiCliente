@@ -25,7 +25,7 @@ import com.google.firebase.auth.FirebaseAuth;
 public class home extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener,
     EditaPerfil.OnFragmentInteractionListener
 {
-
+    String uri_parse;
     TextView usuario;
     View btn;
     ActionBarDrawerToggle mToggle;
@@ -36,6 +36,18 @@ public class home extends AppCompatActivity implements NavigationView.OnNavigati
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_home);
+
+
+
+
+        //recibir datos
+        String name = getIntent().getStringExtra("nombre");
+        uri_parse=getIntent().getStringExtra("uriFoto");
+
+        TextView user_name = (TextView) findViewById(R.id.user);
+        user_name.setText(name);
+
+
 
 
         //quitar orientacion

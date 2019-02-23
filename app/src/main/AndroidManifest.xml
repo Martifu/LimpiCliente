@@ -11,15 +11,14 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/ActionBar">
-        <activity android:name=".Splash"
+        <activity android:name=".home"
             android:screenOrientation="portrait">
-
 
         </activity>
         <activity android:name=".InicioSesion" android:screenOrientation="portrait"/>
-        <activity android:name=".home"
-            android:screenOrientation="portrait"/>
         <activity android:name=".MainActivity"
+            android:screenOrientation="portrait"/>
+        <activity android:name=".Splash"
             android:screenOrientation="portrait">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

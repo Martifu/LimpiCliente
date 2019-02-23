@@ -2,6 +2,7 @@ package com.example.firebaseedu;
 
 import android.content.Intent;
 import android.content.pm.ActivityInfo;
+import android.net.Uri;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v7.app.ActionBar;
@@ -19,6 +20,7 @@ import com.facebook.CallbackManager;
 import com.facebook.FacebookCallback;
 import com.facebook.FacebookException;
 import com.facebook.FacebookSdk;
+import com.facebook.Profile;
 import com.facebook.appevents.AppEventsLogger;
 import com.facebook.login.LoginResult;
 import com.facebook.login.widget.LoginButton;
@@ -49,10 +51,15 @@ public class InicioSesion extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_inicio_sesion);
+
+        //Inicialización de sdk de FACEBOOK
+        FacebookSdk.sdkInitialize(getApplicationContext());
+        AppEventsLogger.activateApp(this);
+
         btn1=  findViewById(R.id.btniniciar);
         correo= findViewById(R.id.editemail);
         contra=  findViewById(R.id.editTextpassword);
-        p=findViewById(R.id.progress);
+
 
 
         //ocultar barra
@@ -61,9 +68,6 @@ public class InicioSesion extends AppCompatActivity {
 
         //quitar orientacion
         setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
-        //Inicialización de sdk de FACEBOOK
-        FacebookSdk.sdkInitialize(getApplicationContext());
-        AppEventsLogger.activateApp(this);
 
 
         //LoginResult de FACEBOOK
@@ -98,14 +102,17 @@ public class InicioSesion extends AppCompatActivity {
                 if (user!=null){
 
                     //metodo que lleva a activity home una vez se haya logeado
+
+                    if(!user.isEmailVerified()) {
+                        Toast.makeText(InicioSesion.this, "Favor de verificar su correo", Toast.LENGTH_LONG).show();
+                    }
                     MainFacebook();
-                    if(!user.isEmailVerified())
-                        Toast.makeText(InicioSesion.this, "Favor de verificar su correo",Toast.LENGTH_LONG).show();
-                    startActivity(new Intent(InicioSesion.this,MainActivity.class));
+                    startActivity(new Intent(InicioSesion.this, home.class));
                 }
                 else
                 {
                     Toast.makeText(InicioSesion.this, "¡Welcome to Limpi!",Toast.LENGTH_LONG).show();
+
                 }
             }
         };
@@ -132,7 +139,13 @@ public class InicioSesion extends AppCompatActivity {
 
     //metodo donde te manda a activity home despues de iniciar sesion con FACEBOOK
     private void MainFacebook() {
+
+       Profile perfil =  com.facebook.Profile.getCurrentProfile();
+        String nombre = perfil.getName();
+        Uri uriFoto = perfil.getProfilePictureUri(30,30);
         Intent intent = new Intent(InicioSesion.this, home.class);
+        intent.putExtra("nombre",nombre);
+        intent.putExtra("uriFoto",uriFoto.toString());
         startActivity(intent);
         finish();
     }

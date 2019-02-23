@@ -95,14 +95,14 @@
         <TextView
             android:id="@+id/user"
             android:layout_width="180dp"
-            android:layout_height="55dp"
+            android:layout_height="80dp"
             android:layout_marginLeft="-3dp"
             android:layout_marginTop="85dp"
             android:layout_toRightOf="@+id/hola"
             android:gravity="center_vertical"
             android:text=""
             android:textColor="#2AFFBA"
-            android:textSize="36dp" />
+            android:textSize="20dp" />
         <ImageView
         android:layout_width="135dp"
         android:layout_height="135dp"
