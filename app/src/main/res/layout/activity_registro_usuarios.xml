@@ -1,11 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".EditaPerfil"
-    android:id="@+id/editar"
-    android:background="#FFFFFF">
+    tools:context=".registro_usuarios"
+    android:background="#FFFFFF"
+    android:orientation="vertical">
 
     <ScrollView
         android:layout_width="match_parent"
@@ -20,13 +21,6 @@
                 android:layout_width="match_parent"
                 android:layout_height="60dp"
                 android:background="@drawable/designbarra" />
-            <ImageView
-                android:id="@+id/cerrar"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="15dp"
-                android:layout_marginTop="15dp"
-                android:src="@drawable/union" />
 
             <ImageView
                 android:layout_marginTop="20dp"
@@ -36,20 +30,20 @@
                 android:layout_centerHorizontal="true"/>
 
             <TextView
-                android:id="@+id/edita"
+                android:id="@+id/bienvenido"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_below="@+id/barra"
                 android:layout_centerHorizontal="true"
                 android:layout_marginTop="20dp"
-                android:text="@string/edita"
-                android:textSize="35dp" />
+                android:text="!BIENVENIDO!"
+                android:textSize="25dp" />
 
             <ImageView
                 android:id="@+id/cargarimagen"
                 android:layout_width="100dp"
                 android:layout_height="100dp"
-                android:layout_below="@+id/edita"
+                android:layout_below="@+id/bienvenido"
                 android:layout_centerHorizontal="true"
                 android:layout_marginTop="40dp"
                 android:src="@drawable/iconoprofilepic" />
@@ -91,14 +85,15 @@
                     android:id="@+id/fontapellidos"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="APELLIDO"/>
+                    android:text="APELLIDO(s)"/>
                 <EditText
                     android:id="@+id/editapellido"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_below="@+id/fontapellidos"
                     android:background="@drawable/shadow"
-                    android:padding="10dp"/>
+                    android:padding="10dp"
+                    android:hint="Escribe tus apellidos"/>
                 <TextView
                     android:layout_marginTop="10dp"
                     android:id="@+id/fontemail"
@@ -110,7 +105,8 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:background="@drawable/shadow"
-                    android:padding="10dp"/>
+                    android:padding="10dp"
+                    android:hint="Escribe tu correo electrónico"/>
                 <TextView
                     android:layout_marginTop="10dp"
                     android:id="@+id/fontpass"
@@ -122,7 +118,9 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:background="@drawable/shadow"
-                    android:padding="10dp"/>
+                    android:padding="10dp"
+                    android:inputType="textPassword"
+                    android:hint="Escribe una contraseña"/>
                 <TextView
                     android:layout_marginTop="10dp"
                     android:id="@+id/fontconfpass"
@@ -134,51 +132,8 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:background="@drawable/shadow"
-                    android:padding="10dp"/>
-
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="10dp">
-                    <LinearLayout
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:orientation="vertical"
-                        android:layout_weight="2">
-                        <TextView
-                            android:id="@+id/fontedad"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:text="EDAD"/>
-                        <Spinner
-                            android:id="@+id/edades"
-                            android:layout_width="150dp"
-                            android:layout_height="50dp"
-                            android:spinnerMode="dropdown"
-                            android:background="@drawable/dropdownstyle"
-                            android:padding="10dp"
-                            />
-                    </LinearLayout>
-                    <LinearLayout
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:orientation="vertical"
-                        android:layout_weight="2">
-                        <TextView
-                            android:id="@+id/fontsexo"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_weight="1"
-                            android:text="SEXO"/>
-                        <Spinner
-                            android:layout_width="150dp"
-                            android:layout_height="50dp"
-                            android:spinnerMode="dropdown"
-                            android:background="@drawable/dropdownstyle"
-                            android:padding="10dp"/>
-                    </LinearLayout>
-
-                </LinearLayout>
+                    android:padding="10dp"
+                    android:hint="Escribe nuevamente tu contraseña"/>
 
                 <TextView
                     android:id="@+id/fontdire"
@@ -191,7 +146,8 @@
                     android:layout_height="wrap_content"
                     android:background="@drawable/shadow"
                     android:layout_marginBottom="20dp"
-                    android:padding="10dp"/>
+                    android:padding="10dp"
+                    android:hint="Escoge una dirección"/>
 
                 <Button
                     android:layout_width="280dp"
@@ -201,6 +157,7 @@
                     android:background="@drawable/boton_plano"
                     android:textColor="#FFFFFF"
                     android:id="@+id/btnregistrate"
+                    android:onClick="registrar"
                     android:layout_marginTop="20dp"
                     android:layout_marginBottom="40dp"/>
             </LinearLayout>
@@ -208,6 +165,4 @@
         </RelativeLayout>
 
     </ScrollView>
-
-
-</FrameLayout>
+</RelativeLayout>

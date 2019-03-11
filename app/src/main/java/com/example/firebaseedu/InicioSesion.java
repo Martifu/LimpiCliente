@@ -9,12 +9,14 @@ import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.text.TextUtils;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ProgressBar;
 import android.widget.Toast;
 
+import com.google.android.gms.auth.api.Auth;
 import com.facebook.AccessToken;
 import com.facebook.CallbackManager;
 import com.facebook.FacebookCallback;
@@ -24,6 +26,13 @@ import com.facebook.Profile;
 import com.facebook.appevents.AppEventsLogger;
 import com.facebook.login.LoginResult;
 import com.facebook.login.widget.LoginButton;
+import com.google.android.gms.auth.api.Auth;
+import com.google.android.gms.auth.api.signin.GoogleSignInAccount;
+import com.google.android.gms.auth.api.signin.GoogleSignInOptions;
+import com.google.android.gms.auth.api.signin.GoogleSignInResult;
+import com.google.android.gms.common.ConnectionResult;
+import com.google.android.gms.common.SignInButton;
+import com.google.android.gms.common.api.GoogleApiClient;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthCredential;
@@ -31,10 +40,12 @@ import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FacebookAuthProvider;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.auth.GoogleAuthProvider;
 
 import java.util.Arrays;
+import java.util.Objects;
 
-public class InicioSesion extends AppCompatActivity {
+public class InicioSesion extends AppCompatActivity implements GoogleApiClient.OnConnectionFailedListener {
     private Button btn1;
     ProgressBar p;
     private EditText correo;
@@ -42,6 +53,11 @@ public class InicioSesion extends AppCompatActivity {
     private FirebaseAuth firebaseAuth;
     private FirebaseAuth.AuthStateListener authStateListener;
 
+    //Componente GOOGLE
+    GoogleApiClient mGoogleApiClient;
+    SignInButton loginGoogle;
+
+    public static final int SIGN_CODE=777;
     //componentes FACEBOOK
     LoginButton loginButton;
     CallbackManager callbackManager; //se encarga de recibir la respuesta de FB
@@ -52,6 +68,9 @@ public class InicioSesion extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_inicio_sesion);
 
+        //ocultar barra
+        ActionBar actionBar = getSupportActionBar();
+        actionBar.hide();
         //Inicialización de sdk de FACEBOOK
         FacebookSdk.sdkInitialize(getApplicationContext());
         AppEventsLogger.activateApp(this);
@@ -60,15 +79,36 @@ public class InicioSesion extends AppCompatActivity {
         correo= findViewById(R.id.editemail);
         contra=  findViewById(R.id.editTextpassword);
 
+        loginButton = findViewById(R.id.login_button);
+        loginGoogle = findViewById(R.id.btn_google);
 
 
-        //ocultar barra
-        ActionBar actionBar = getSupportActionBar();
-        actionBar.hide();
+
 
         //quitar orientacion
         setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
 
+        //Creea SingIn Google opciones
+        GoogleSignInOptions gso = new GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
+                .requestIdToken(getString(R.string.web_id__client))
+                .requestEmail()
+                .build();
+
+        mGoogleApiClient = new GoogleApiClient.Builder(InicioSesion.this).enableAutoManage(this,  this)
+                .addApi(Auth.GOOGLE_SIGN_IN_API,gso)
+                .build();
+
+
+
+        //GOOGLE
+
+        loginGoogle.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent =  Auth.GoogleSignInApi.getSignInIntent(mGoogleApiClient);
+                startActivityForResult(intent,SIGN_CODE);
+            }
+        });
 
         //LoginResult de FACEBOOK
         callbackManager = CallbackManager.Factory.create();
@@ -106,6 +146,7 @@ public class InicioSesion extends AppCompatActivity {
                     if(!user.isEmailVerified()) {
                         Toast.makeText(InicioSesion.this, "Favor de verificar su correo", Toast.LENGTH_LONG).show();
                     }
+                    SingGoogle();
                     MainFacebook();
                     startActivity(new Intent(InicioSesion.this, home.class));
                 }
@@ -140,12 +181,12 @@ public class InicioSesion extends AppCompatActivity {
     //metodo donde te manda a activity home despues de iniciar sesion con FACEBOOK
     private void MainFacebook() {
 
-       Profile perfil =  com.facebook.Profile.getCurrentProfile();
+      /* Profile perfil =  com.facebook.Profile.getCurrentProfile();
         String nombre = perfil.getName();
-        Uri uriFoto = perfil.getProfilePictureUri(30,30);
+        Uri uriFoto = perfil.getProfilePictureUri(30,30);*/
         Intent intent = new Intent(InicioSesion.this, home.class);
-        intent.putExtra("nombre",nombre);
-        intent.putExtra("uriFoto",uriFoto.toString());
+      /*  intent.putExtra("nombre",nombre);
+        intent.putExtra("uriFoto",uriFoto.toString());*/
         startActivity(intent);
         finish();
     }
@@ -154,10 +195,18 @@ public class InicioSesion extends AppCompatActivity {
     protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
         callbackManager.onActivityResult(requestCode, resultCode, data);
+
+        //Checa respuesta de logeo de Google
+        if (requestCode == SIGN_CODE){
+            GoogleSignInResult resultado = Auth.GoogleSignInApi.getSignInResultFromIntent(data);
+            handleSignInResult(resultado);
+        }
     }
 
 
     public void registrarusuario(View view) {
+        Intent inte = new Intent(this , registro_usuarios.class);
+        startActivity(inte);
     }
 
     public void sesionar(View view) {
@@ -189,23 +238,48 @@ public class InicioSesion extends AppCompatActivity {
     }
 
     public void recuperapass(View view) {
+        Intent inte = new Intent(this, Recuperar.class);
+        startActivity(inte);
     }
 
+    //METODOS GOOGLE
 
+    private void SingGoogle(){
+        Intent intent = new Intent(InicioSesion.this,home.class);
+        startActivity(intent);
 
+    }
 
+    private void handleSignInResult(GoogleSignInResult result){
+        if (result.isSuccess()){
+            //GoogleSignInAccount cuenta = resultado.getSignInAccount();
+            firebaseAuthWithGoogle(result.getSignInAccount());
+            //Log.d("Usuario", cuenta.getDisplayName());
+        }
+        else {
+            Toast.makeText(this, "Error de inicio de sesion con google", Toast.LENGTH_SHORT).show();
+        }
+    }
 
+    private void firebaseAuthWithGoogle(GoogleSignInAccount signInAccount) {
+        AuthCredential credential = GoogleAuthProvider.getCredential(signInAccount.getIdToken(),null);
+        firebaseAuth.signInWithCredential(credential).addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
+            @Override
+            public void onComplete(@NonNull Task<AuthResult> task) {
+                if ( !task.isSuccessful() )
 
+                {
+                    Toast.makeText(InicioSesion.this, "No se pudo autenticar ", Toast.LENGTH_SHORT).show();
+                }
+            }
+        });
+    }
 
-
-
-
-
-
-
-
-
-
+    @Override
+    protected void onStart() {
+        super.onStart();
+        firebaseAuth.addAuthStateListener(authStateListener);
+    }
 
     @Override
     protected void onStop() {
@@ -215,9 +289,9 @@ public class InicioSesion extends AppCompatActivity {
         }
     }
 
+
     @Override
-    protected void onStart() {
-        super.onStart();
-        firebaseAuth.addAuthStateListener(authStateListener);
+    public void onConnectionFailed(@NonNull ConnectionResult connectionResult) {
+
     }
 }

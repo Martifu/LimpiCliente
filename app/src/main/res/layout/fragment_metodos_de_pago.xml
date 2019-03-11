@@ -1,0 +1,141 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".MetodosDePago"
+    android:id="@+id/pagos"
+    android:background="#FFFFFF">
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:scrollbars="none">
+
+
+        <RelativeLayout
+            android:id="@+id/partearriba"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <View
+                android:id="@+id/barra"
+                android:layout_width="match_parent"
+                android:layout_height="60dp"
+                android:background="@drawable/designbarra" />
+
+            <ImageView
+                android:id="@+id/close"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="15dp"
+                android:layout_marginTop="15dp"
+                android:src="@drawable/union" />
+
+            <ImageView
+                android:layout_width="60dp"
+                android:layout_height="30dp"
+                android:layout_centerHorizontal="true"
+                android:layout_marginTop="20dp"
+                android:background="@drawable/limpiblanco" />
+
+            <TextView
+                android:id="@+id/mpagos"
+                android:layout_width="350dp"
+                android:layout_height="72dp"
+                android:layout_centerHorizontal="true"
+                android:layout_marginTop="60dp"
+                android:gravity="center"
+                android:text="@string/mpagos"
+                android:textColor="#000"
+                android:textSize="24dp" />
+
+            <TextView
+                android:id="@+id/formasdepago"
+                android:layout_width="199dp"
+                android:layout_height="24dp"
+                android:layout_below="@+id/mpagos"
+                android:layout_marginLeft="35dp"
+                android:text="@string/metodos"
+                android:textColor="#000"
+
+
+                />
+
+            <Spinner
+                android:id="@+id/spinner1"
+                android:layout_width="351dp"
+                android:layout_height="52dp"
+                android:layout_below="@+id/formasdepago"
+                android:layout_centerHorizontal="true"
+                android:layout_marginTop="0dp"
+                android:background="@drawable/gradientspinner" />
+
+            <TextView
+                android:layout_width="351dp"
+                android:layout_height="24dp"
+                android:layout_below="@+id/mpagos"
+                android:layout_marginLeft="35dp"
+                android:layout_marginTop="100dp"
+                android:text="@string/escogemetodo"
+                android:textColor="#C0C0C0"
+                android:textSize="12dp"
+
+
+                />
+
+            <HorizontalScrollView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="270dp"
+                android:scrollbars="none">
+
+                <LinearLayout
+                    android:id="@+id/linear"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:gravity="center"
+                    android:orientation="horizontal">
+
+                    <ImageView
+                        android:layout_width="436dp"
+                        android:layout_height="150dp"
+                        android:contentDescription="@string/card"
+                        android:src="@drawable/cards"
+                       />
+
+                    <ImageView
+                        android:layout_width="400dp"
+                        android:layout_height="150dp"
+                        android:contentDescription="@string/card"
+                        android:src="@drawable/cards" />
+
+                </LinearLayout>
+
+
+            </HorizontalScrollView>
+
+            <ImageView
+                android:layout_width="40dp"
+                android:layout_height="40dp"
+                android:layout_centerHorizontal="true"
+                android:layout_marginTop="472dp"
+                android:src="@drawable/btn_anadir_tarjeta"
+                android:id="@+id/imganadir"/>
+
+            <Button
+                android:id="@+id/btncambiar"
+                style="@style/Widget.AppCompat.Button.Borderless.Colored"
+                android:layout_width="280dp"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/btn_google"
+                android:layout_centerHorizontal="true"
+                android:layout_marginTop="557dp"
+                android:background="@drawable/boton_plano"
+                android:text="@string/Cambiar"
+                android:textColor="#FFFFFF" />
+        </RelativeLayout>
+
+
+    </ScrollView>
+</FrameLayout>

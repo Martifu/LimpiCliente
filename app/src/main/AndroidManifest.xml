@@ -18,9 +18,11 @@
         <activity android:name=".InicioSesion" android:screenOrientation="portrait"/>
         <activity android:name=".MainActivity"
             android:screenOrientation="portrait"/>
-        <activity android:name=".Splash"
-            android:screenOrientation="portrait">
-            <intent-filter>
+        <activity android:name=".Recuperar"></activity>
+        <activity android:name=".registro_usuarios" />
+        <activity
+            android:name=".Splash"
+>           <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />

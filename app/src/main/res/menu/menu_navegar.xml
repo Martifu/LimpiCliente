@@ -4,7 +4,7 @@
     >
     <group android:checkableBehavior="single">
 
-    <item android:id="@+id/inicio" android:title="Mi perfil" android:icon="@drawable/com_facebook_profile_picture_blank_portrait"/>
+    <item android:id="@+id/inicio" android:title="Mi perfil" android:icon="@drawable/profile_icon"/>
     <item android:id="@+id/pagos"
         android:title="Métodos de pago" android:icon="@drawable/ic_tarjetas_svg" android:iconTint="#26DCC4"/>
     </group>

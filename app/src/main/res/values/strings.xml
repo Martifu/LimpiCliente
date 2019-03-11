@@ -25,4 +25,10 @@
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="edita"><b>Edita tu perfil</b></string>
+    <string name="mpagos"><b>Pagos</b></string>
+    <string name="metodos"><b>Métodos de pago</b></string>
+    <string name="escogemetodo">Elige un metodo de pago guardado o agrega uno nuevo</string>
+    <string name="card">card</string>
+    <string name="Cambiar">Cambiar</string>
+    <string name="web_id__client">559812347088-6lts2cbcleo2mu1objme7igsskd51oat.apps.googleusercontent.com</string>
 </resources>

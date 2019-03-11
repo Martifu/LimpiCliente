@@ -23,7 +23,7 @@ import com.facebook.login.LoginManager;
 import com.google.firebase.auth.FirebaseAuth;
 
 public class home extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener,
-    EditaPerfil.OnFragmentInteractionListener
+    EditaPerfil.OnFragmentInteractionListener, MetodosDePago.OnFragmentInteractionListener
 {
     String uri_parse;
     TextView usuario;
@@ -36,7 +36,6 @@ public class home extends AppCompatActivity implements NavigationView.OnNavigati
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_home);
-
 
 
 
@@ -97,10 +96,13 @@ public class home extends AppCompatActivity implements NavigationView.OnNavigati
 
 
 
+
+
     @Override
     public boolean onNavigationItemSelected(@NonNull MenuItem menuItem)
     {
         int id=menuItem.getItemId();
+
 
         Fragment fragment = null;
         Boolean FragmentSelected=false;
@@ -110,7 +112,11 @@ public class home extends AppCompatActivity implements NavigationView.OnNavigati
             fragment = new EditaPerfil();
             FragmentSelected=true;
         }
-
+        else if(id==R.id.pagos)
+        {
+            fragment = new MetodosDePago();
+            FragmentSelected=true;
+        }
         if ( FragmentSelected ){
 
             getSupportFragmentManager().beginTransaction().replace(R.id.relative,fragment).commit();
