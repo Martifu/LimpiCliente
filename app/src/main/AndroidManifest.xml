@@ -11,18 +11,20 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/ActionBar">
-        <activity android:name=".home"
-            android:screenOrientation="portrait">
-
-        </activity>
-        <activity android:name=".InicioSesion" android:screenOrientation="portrait"/>
-        <activity android:name=".MainActivity"
-            android:screenOrientation="portrait"/>
-        <activity android:name=".Recuperar"></activity>
-        <activity android:name=".registro_usuarios" />
+        <activity android:name=".Splash"></activity>
         <activity
-            android:name=".Splash"
->           <intent-filter>
+            android:name=".home"
+            android:screenOrientation="portrait"></activity>
+        <activity
+            android:name=".sms_verificacion"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".MainActivity"
+            android:screenOrientation="portrait" />
+        <activity android:name=".Recuperar" />
+        <activity android:name=".registro_usuarios" />
+        <activity android:name=".InicioSesion">
+            <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />

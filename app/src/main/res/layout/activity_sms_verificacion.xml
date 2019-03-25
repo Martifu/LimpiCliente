@@ -1,0 +1,101 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".sms_verificacion"
+    android:background="#FFFFFF"
+    android:orientation="vertical">
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <RelativeLayout
+            android:id="@+id/partearriba"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <View
+                android:id="@+id/barra"
+                android:layout_width="match_parent"
+                android:layout_height="60dp"
+                android:background="@drawable/designbarra" />
+
+            <ImageView
+                android:layout_width="60dp"
+                android:layout_height="30dp"
+                android:layout_centerHorizontal="true"
+                android:layout_marginTop="20dp"
+                android:background="@drawable/limpiblanco" />
+
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/cargarimagen"
+                android:layout_marginHorizontal="10dp"
+                android:layout_marginTop="65dp"
+                android:orientation="vertical">
+
+                <TextView
+                    android:id="@+id/txtnumero"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/cargarimagen"
+                    android:text="Ingresa tu número" />
+
+                <EditText
+                    android:id="@+id/edtnumero"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/shadow"
+                    android:hint="Ingresa tu número"
+
+                    android:padding="10dp" />
+
+                <Button
+                    android:id="@+id/btnnumero"
+                    android:layout_width="280dp"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_horizontal"
+                    android:layout_marginTop="20dp"
+                    android:layout_marginBottom="40dp"
+                    android:background="@drawable/boton_plano"
+                    android:text="Enviar SMS"
+                    android:textColor="#FFFFFF" />
+
+                <TextView
+                    android:id="@+id/fontapellidos"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="10dp"
+                    android:text="Código de verificación" />
+
+                <EditText
+                    android:id="@+id/edtcodigo"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/fontapellidos"
+                    android:background="@drawable/shadow"
+                    android:hint="Ingresa tu código de verificación"
+                    android:padding="10dp"
+                  />
+
+                <Button
+                    android:id="@+id/btncodigo"
+                    android:layout_width="280dp"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_horizontal"
+                    android:layout_marginTop="20dp"
+                    android:layout_marginBottom="40dp"
+                    android:background="@drawable/boton_plano"
+                    android:text="Enviar"
+                    android:textColor="#FFFFFF" />
+            </LinearLayout>
+
+        </RelativeLayout>
+
+    </ScrollView>
+</RelativeLayout>

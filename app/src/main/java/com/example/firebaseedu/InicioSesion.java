@@ -5,17 +5,20 @@ import android.content.pm.ActivityInfo;
 import android.net.Uri;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
+import android.support.design.widget.FloatingActionButton;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.text.TextUtils;
 import android.util.Log;
 import android.view.View;
+import android.view.animation.OvershootInterpolator;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ProgressBar;
 import android.widget.Toast;
 
+import com.facebook.login.LoginManager;
 import com.google.android.gms.auth.api.Auth;
 import com.facebook.AccessToken;
 import com.facebook.CallbackManager;
@@ -45,21 +48,25 @@ import com.google.firebase.auth.GoogleAuthProvider;
 import java.util.Arrays;
 import java.util.Objects;
 
-public class InicioSesion extends AppCompatActivity implements GoogleApiClient.OnConnectionFailedListener {
+public class InicioSesion extends AppCompatActivity implements GoogleApiClient.OnConnectionFailedListener, View.OnClickListener
+{
     private Button btn1;
-    ProgressBar p;
+    FloatingActionButton fb, main,google,btnsms;
+    Float translationY=100f;
+    OvershootInterpolator interpolator = new OvershootInterpolator();
+
     private EditText correo;
     private EditText contra;
     private FirebaseAuth firebaseAuth;
     private FirebaseAuth.AuthStateListener authStateListener;
+    Boolean menuOpen=false;
 
     //Componente GOOGLE
     GoogleApiClient mGoogleApiClient;
-    SignInButton loginGoogle;
 
     public static final int SIGN_CODE=777;
     //componentes FACEBOOK
-    LoginButton loginButton;
+
     CallbackManager callbackManager; //se encarga de recibir la respuesta de FB
 
 
@@ -78,13 +85,31 @@ public class InicioSesion extends AppCompatActivity implements GoogleApiClient.O
         btn1=  findViewById(R.id.btniniciar);
         correo= findViewById(R.id.editemail);
         contra=  findViewById(R.id.editTextpassword);
-
-        loginButton = findViewById(R.id.login_button);
-        loginGoogle = findViewById(R.id.btn_google);
-
+    //    btnsms=findViewById(R.id.btnsms);
+  //      btnsms.setOnClickListener(this);
 
 
 
+
+        callbackManager = CallbackManager.Factory.create();
+        main = findViewById(R.id.options);
+        fb=findViewById(R.id.login_button);
+        google = findViewById(R.id.google);
+        btnsms = findViewById(R.id.sms);
+
+        fb.setAlpha(0f);
+        google.setAlpha(0f);
+        btnsms.setAlpha(0f);
+
+        main.setTranslationY(translationY);
+        fb.setTranslationY(translationY);
+        google.setTranslationY(translationY);
+        btnsms.setTranslationY(translationY);
+
+        main.setOnClickListener(this);
+        fb.setOnClickListener(this);
+        btnsms.setOnClickListener(this);
+        google.setOnClickListener(this);
         //quitar orientacion
         setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
 
@@ -101,36 +126,6 @@ public class InicioSesion extends AppCompatActivity implements GoogleApiClient.O
 
 
         //GOOGLE
-
-        loginGoogle.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent =  Auth.GoogleSignInApi.getSignInIntent(mGoogleApiClient);
-                startActivityForResult(intent,SIGN_CODE);
-            }
-        });
-
-        //LoginResult de FACEBOOK
-        callbackManager = CallbackManager.Factory.create();
-        loginButton = findViewById(R.id.login_button);
-        loginButton.setReadPermissions(Arrays.asList("email"));
-        loginButton.registerCallback(callbackManager, new FacebookCallback<LoginResult>() {
-            @Override
-            public void onSuccess(LoginResult loginResult) {
-                handleFacebookToken(loginResult.getAccessToken());
-            }
-
-            @Override
-            public void onCancel() {
-                Toast.makeText(InicioSesion.this, "Se canceló", Toast.LENGTH_SHORT).show();
-
-            }
-
-            @Override
-            public void onError(FacebookException error) {
-                Toast.makeText(InicioSesion.this, "Hubo un error", Toast.LENGTH_SHORT).show();
-            }
-        });
 
 
         firebaseAuth.getInstance().signOut();
@@ -294,4 +289,78 @@ public class InicioSesion extends AppCompatActivity implements GoogleApiClient.O
     public void onConnectionFailed(@NonNull ConnectionResult connectionResult) {
 
     }
+
+    private void Openmenu(){
+        menuOpen=!menuOpen;
+
+        main.animate().setInterpolator(interpolator).rotationBy(45f).setDuration(300).start();
+        fb.animate().translationY(0f).alpha(1f).setInterpolator(interpolator).setDuration(300).start();
+        google.animate().translationY(0f).alpha(1f).setInterpolator(interpolator).setDuration(300).start();
+        btnsms.animate().translationY(0f).alpha(1f).setInterpolator(interpolator).setDuration(300).start();
+    }
+
+    private void Closemenu(){
+        menuOpen=!menuOpen;
+        main.animate().setInterpolator(interpolator).rotationBy(45f ).setDuration(300).start();
+        fb.animate().translationY(translationY).alpha(0f).setInterpolator(interpolator).setDuration(300).start();
+        google.animate().translationY(translationY).alpha(0f).setInterpolator(interpolator).setDuration(300).start();
+        btnsms.animate().translationY(translationY).alpha(0f).setInterpolator(interpolator).setDuration(300).start();
+    }
+    @Override
+    public void onClick(View v) {
+        /*Intent sms = new Intent(InicioSesion.this,sms_verificacion.class);
+        startActivity(sms);*/
+
+
+        switch (v.getId()){
+            case R.id.options:
+                    if ( !menuOpen ){
+                        Openmenu();
+                    }
+                    else {
+                        Closemenu();
+                    }
+                break;
+            case R.id.google:
+                Intent intent =  Auth.GoogleSignInApi.getSignInIntent(mGoogleApiClient);
+                startActivityForResult(intent,SIGN_CODE);
+                break;
+            case R.id.login_button:
+                //LoginResult de FACEBOOK
+                fb = findViewById(R.id.login_button);
+                LoginManager.getInstance().registerCallback(callbackManager,
+                        new FacebookCallback<LoginResult>() {
+                            @Override
+                            public void onSuccess(LoginResult loginResult) {
+                                handleFacebookToken(loginResult.getAccessToken());
+
+                            }
+
+                            @Override
+                            public void onCancel() {
+                                Toast.makeText(InicioSesion.this, "Inicio Cancelado", Toast.LENGTH_LONG).show();
+                            }
+
+                            @Override
+                            public void onError(FacebookException exception) {
+                                Toast.makeText(InicioSesion.this, exception.getMessage(), Toast.LENGTH_LONG).show();
+                            }
+                        });
+
+
+                fb.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View view) {
+                        LoginManager.getInstance().logInWithReadPermissions(InicioSesion.this, Arrays.asList("public_profile", "user_friends","email"));
+                    }
+                });
+
+                break;
+            case R.id.sms:
+                Intent intento = new Intent(InicioSesion.this,sms_verificacion.class);
+                startActivity(intento);
+                break;
+        }
+
+        }
 }
