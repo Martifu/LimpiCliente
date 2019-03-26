@@ -13,9 +13,10 @@
         android:layout_height="match_parent">
 
         <RelativeLayout
+            android:id="@+id/partearriba"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:id="@+id/partearriba">
+            android:layout_height="wrap_content">
+
             <View
                 android:id="@+id/barra"
                 android:layout_width="match_parent"
@@ -23,11 +24,11 @@
                 android:background="@drawable/designbarra" />
 
             <ImageView
-                android:layout_marginTop="20dp"
                 android:layout_width="60dp"
                 android:layout_height="30dp"
-                android:background="@drawable/limpiblanco"
-                android:layout_centerHorizontal="true"/>
+                android:layout_centerHorizontal="true"
+                android:layout_marginTop="20dp"
+                android:background="@drawable/limpiblanco" />
 
             <TextView
                 android:id="@+id/bienvenido"
@@ -63,109 +64,126 @@
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="20dp"
-                android:layout_marginHorizontal="10dp"
                 android:layout_below="@id/cargarimagen"
+                android:layout_marginHorizontal="10dp"
+                android:layout_marginTop="20dp"
                 android:orientation="vertical">
+
                 <TextView
                     android:textColor="#000"
                     android:id="@+id/fontnombres"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_below="@+id/cargarimagen"
-                    android:text="NOMBRES(S)"/>
+                    android:text="NOMBRES(S)" />
+
                 <EditText
                     android:id="@+id/editnombre"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:background="@drawable/shadow"
-                    android:padding="10dp"
-                    android:hint="Escribe tu nombre"/>
+                    android:hint="Escribe tu nombre"
+                    android:padding="10dp" />
+
                 <TextView
                     android:textColor="#000"
-                    android:layout_marginTop="10dp"
+
                     android:id="@+id/fontapellidos"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="APELLIDO(s)"/>
+                    android:layout_marginTop="10dp"
+                    android:text="APELLIDO(s)" />
+
                 <EditText
                     android:id="@+id/editapellido"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_below="@+id/fontapellidos"
                     android:background="@drawable/shadow"
-                    android:padding="10dp"
-                    android:hint="Escribe tus apellidos"/>
+                    android:hint="Escribe tus apellidos"
+                    android:padding="10dp" />
+
                 <TextView
                     android:textColor="#000"
-                    android:layout_marginTop="10dp"
+
                     android:id="@+id/fontemail"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="CORREO ELECTRONICO"/>
+                    android:layout_marginTop="10dp"
+                    android:text="CORREO ELECTRONICO" />
+
                 <EditText
                     android:id="@+id/editemail"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:background="@drawable/shadow"
-                    android:padding="10dp"
-                    android:hint="Escribe tu correo electrónico"/>
+                    android:hint="Escribe tu correo electrónico"
+                    android:padding="10dp" />
+
                 <TextView
+
                     android:textColor="#000"
-                    android:layout_marginTop="10dp"
+
+
                     android:id="@+id/fontpass"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="CONTRASEÑA"/>
+                    android:layout_marginTop="10dp"
+                    android:text="CONTRASEÑA" />
+
                 <EditText
                     android:id="@+id/editpass"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:background="@drawable/shadow"
-                    android:padding="10dp"
+                    android:hint="Escribe una contraseña"
                     android:inputType="textPassword"
-                    android:hint="Escribe una contraseña"/>
+                    android:padding="10dp" />
+
                 <TextView
                     android:textColor="#000"
-                    android:layout_marginTop="10dp"
+
                     android:id="@+id/fontconfpass"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="CONFIRMAR CONTRASEÑA"/>
+                    android:layout_marginTop="10dp"
+                    android:text="CONFIRMAR CONTRASEÑA" />
+
                 <EditText
                     android:id="@+id/editconfpass"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:background="@drawable/shadow"
-                    android:padding="10dp"
-                    android:hint="Escribe nuevamente tu contraseña"/>
+                    android:hint="Escribe nuevamente tu contraseña"
+                    android:padding="10dp" />
 
                 <TextView
                     android:textColor="#000"
                     android:id="@+id/fontdire"
-                    android:layout_marginTop="10dp"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="DIRECCIÓN PARA RECOGER LA ROPA"/>
+                    android:layout_marginTop="10dp"
+                    android:text="DIRECCIÓN PARA RECOGER LA ROPA" />
+
                 <EditText
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:background="@drawable/shadow"
                     android:layout_marginBottom="20dp"
-                    android:padding="10dp"
-                    android:hint="Escoge una dirección"/>
+                    android:background="@drawable/shadow"
+                    android:hint="Escoge una dirección"
+                    android:padding="10dp" />
 
                 <Button
+                    android:id="@+id/btnregistrate"
                     android:layout_width="280dp"
                     android:layout_height="wrap_content"
-                    android:text="Registrate"
                     android:layout_gravity="center_horizontal"
-                    android:background="@drawable/boton_plano"
-                    android:textColor="#FFFFFF"
-                    android:id="@+id/btnregistrate"
-                    android:onClick="registrar"
                     android:layout_marginTop="20dp"
-                    android:layout_marginBottom="40dp"/>
+                    android:layout_marginBottom="40dp"
+                    android:background="@drawable/boton_plano"
+                    android:onClick="registrar"
+                    android:text="Registrate"
+                    android:textColor="#FFFFFF" />
             </LinearLayout>
 
         </RelativeLayout>

@@ -128,9 +128,8 @@
                 style="@style/Widget.AppCompat.Button.Borderless.Colored"
                 android:layout_width="280dp"
                 android:layout_height="wrap_content"
-                android:layout_below="@id/btn_google"
+                android:layout_below="@id/imganadir"
                 android:layout_centerHorizontal="true"
-                android:layout_marginTop="557dp"
                 android:background="@drawable/boton_plano"
                 android:text="@string/Cambiar"
                 android:textColor="#FFFFFF" />
