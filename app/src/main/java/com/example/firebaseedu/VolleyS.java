@@ -14,7 +14,7 @@ public class VolleyS {
         requestQueue = Volley.newRequestQueue(context);
     }
 
-    public static VolleyS getInstance(Context context)
+    public static VolleyS getInstance(registro_usuarios context)
     {
         if (mVolleyS==null)
         {

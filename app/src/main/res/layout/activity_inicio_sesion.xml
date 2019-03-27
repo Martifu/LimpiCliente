@@ -165,7 +165,7 @@
         app:backgroundTint="#3b5998"
         android:src="@drawable/facebook"
         android:layout_marginTop="130dp"
-        app:for="Iniciar con Facebook"
+
 
         />
         <android.support.design.widget.FloatingActionButton

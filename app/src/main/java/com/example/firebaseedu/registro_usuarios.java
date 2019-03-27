@@ -6,6 +6,7 @@ import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.text.TextUtils;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -51,9 +52,9 @@ public class registro_usuarios extends AppCompatActivity {
             public void onAuthStateChanged(@NonNull FirebaseAuth firebaseAuth) {
                 FirebaseUser Users =  firebaseAuth.getCurrentUser();
                 if (Users != null){
-                    Toast.makeText(registro_usuarios.this,"ya se creo el usuario correctamente ",Toast.LENGTH_LONG).show();
+
                 }else{
-                    Toast.makeText(registro_usuarios.this,"no se no fue creado",Toast.LENGTH_LONG).show();
+
                 }
             }
         };
@@ -78,32 +79,6 @@ public class registro_usuarios extends AppCompatActivity {
     public void registrar(View view) {
         String username = usernameText.getText().toString();
         String passwor = passText.getText().toString();
-        String nombre = nom.getText().toString();
-        String apellido = apell.getText().toString();
-
-        JSONObject datos = new JSONObject();
-        try {
-            datos.put("nombre",nombre);
-            datos.put("apellido",apellido);
-        } catch (JSONException e) {
-            e.printStackTrace();
-        }
-
-
-        JsonObjectRequest objectRequest = new JsonObjectRequest(Request.Method.POST, "http://limpi.mipantano.com/usuario",
-                datos, new Response.Listener<JSONObject>() {
-            @Override
-            public void onResponse(JSONObject response) {
-                Toast.makeText(registro_usuarios.this, "Registrado exitosamente!", Toast.LENGTH_SHORT).show();
-            }
-        }, new Response.ErrorListener() {
-            @Override
-            public void onErrorResponse(VolleyError error) {
-
-            }
-        });
-        VolleyS.getInstance(this).getRequestQueue().add(objectRequest);
-
         firebaseAuth.createUserWithEmailAndPassword(username,passwor).addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
             @Override
             public void onComplete(@NonNull Task<AuthResult> task) {
@@ -112,6 +87,34 @@ public class registro_usuarios extends AppCompatActivity {
                 }
                 else{
                     FirebaseUser Users =  firebaseAuth.getCurrentUser();
+                    try {
+
+                        String nombre = nom.getText().toString();
+                        String apellido = apell.getText().toString();
+                        String uid = Users.getUid();
+                        JSONObject datos = new JSONObject();
+                        datos.put("nombre",nombre);
+                        datos.put("apellido",apellido);
+                        datos.put("uid",uid);
+                        JsonObjectRequest objectRequest = new JsonObjectRequest(Request.Method.POST, "http://limpi.mipantano.com/api/usuario",
+                                datos, new Response.Listener<JSONObject>() {
+                            @Override
+                            public void onResponse(JSONObject response) {
+                                Toast.makeText(registro_usuarios.this, "Registrado exitosamente!", Toast.LENGTH_SHORT).show();
+                            }
+                        }, new Response.ErrorListener() {
+                            @Override
+                            public void onErrorResponse(VolleyError error) {
+                                Log.d("Error",error.toString());
+                            }
+                        });
+                        VolleyS.getInstance(registro_usuarios.this).getRequestQueue().add(objectRequest);
+                    } catch (JSONException e) {
+                        e.printStackTrace();
+                    }
+
+
+
                     Users.sendEmailVerification();
                     Intent intent = new Intent(registro_usuarios.this,home.class);
                     startActivity(intent);

@@ -128,7 +128,7 @@ public class InicioSesion extends AppCompatActivity implements GoogleApiClient.O
         //GOOGLE
 
 
-        firebaseAuth.getInstance().signOut();
+//        firebaseAuth.getInstance().signOut();
         firebaseAuth= FirebaseAuth.getInstance();
         authStateListener= new FirebaseAuth.AuthStateListener() {
             @Override
@@ -138,9 +138,7 @@ public class InicioSesion extends AppCompatActivity implements GoogleApiClient.O
 
                     //metodo que lleva a activity home una vez se haya logeado
 
-                    if(!user.isEmailVerified()) {
-                        Toast.makeText(InicioSesion.this, "Favor de verificar su correo", Toast.LENGTH_LONG).show();
-                    }
+
                     SingGoogle();
                     MainFacebook();
                     startActivity(new Intent(InicioSesion.this, home.class));
@@ -224,7 +222,16 @@ public class InicioSesion extends AppCompatActivity implements GoogleApiClient.O
                     }
                     else
                     {
-                        startActivity(new Intent(InicioSesion.this,MainActivity.class));
+                        FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
+                        if (user != null) {
+
+                            // Check if user's email is verified
+                            boolean emailVerified = user.isEmailVerified();
+                            if(!user.isEmailVerified()) {
+                                Toast.makeText(InicioSesion.this, "Favor de verificar su correo", Toast.LENGTH_LONG).show();
+                            }
+                        }
+
                     }
                 }
             });
