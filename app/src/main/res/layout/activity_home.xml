@@ -31,7 +31,6 @@
         <Button
             android:layout_width="30dp"
             android:layout_height="30dp"
-            android:layout_marginTop="20dp"
             android:layout_marginRight="34dp"
             android:background="@drawable/radious_image"
             android:layout_marginLeft="16dp"
@@ -42,8 +41,8 @@
         <ImageView
             android:layout_width="60dp"
             android:layout_height="30dp"
-            android:layout_centerHorizontal="true"
-            android:layout_marginTop="20dp"
+            android:layout_marginLeft="80dp"
+            android:layout_marginTop="18dp"
             android:background="@drawable/limpiblanco"
             android:id="@+id/limpi"/>
 
@@ -71,12 +70,13 @@
 
         <TextView
             android:id="@+id/hola"
-            android:layout_width="180dp"
-            android:layout_height="55dp"
-            android:layout_marginLeft="18dp"
+            android:layout_width="150dp"
+            android:layout_height="80dp"
+            android:layout_marginLeft="30dp"
+            android:paddingLeft="60dp"
+            android:paddingBottom="35dp"
             android:layout_marginTop="85dp"
             android:gravity="center_vertical"
-            android:paddingHorizontal="45dp"
             android:text="¡Hola"
             android:textColor="#000"
             android:textSize="36dp" />
@@ -95,27 +95,28 @@
         <TextView
             android:id="@+id/user"
             android:layout_width="180dp"
-            android:layout_height="80dp"
+            android:layout_height="50dp"
             android:layout_marginLeft="-3dp"
             android:layout_marginTop="85dp"
             android:layout_toRightOf="@+id/hola"
             android:gravity="center_vertical"
-            android:text=""
+            android:text="Mario!"
             android:textColor="#2AFFBA"
-            android:textSize="20dp" />
+            android:textSize="35dp" />
+
         <ImageView
         android:layout_width="135dp"
         android:layout_height="135dp"
         android:layout_marginTop="210dp"
         android:src="@drawable/membresia"
-        android:layout_marginLeft="30dp"
+        android:layout_marginLeft="50dp"
         android:id="@+id/membre"
         />
         <ImageView
             android:layout_width="135dp"
             android:layout_height="135dp"
             android:src="@drawable/costura"
-            android:layout_marginLeft="30dp"
+            android:layout_marginLeft="50dp"
             android:id="@+id/costura"
             android:layout_below="@+id/membre"
             android:layout_marginTop="40dp"
@@ -146,7 +147,7 @@
             android:id="@+id/membree"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginLeft="55dp"
+            android:layout_marginLeft="75dp"
             android:layout_marginTop="345dp"
             android:text="@string/membre"
             android:textAlignment="center"
@@ -159,7 +160,7 @@
             android:id="@+id/pedidos2"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginLeft="230dp"
+            android:layout_marginLeft="250dp"
             android:layout_marginTop="345dp"
             android:text="@string/pedidos2"
             android:textAlignment="center"
@@ -171,7 +172,7 @@
             android:id="@+id/costurera"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginLeft="55dp"
+            android:layout_marginLeft="85dp"
             android:layout_marginTop="530dp"
             android:text="@string/costura"
             android:textAlignment="center"
@@ -184,7 +185,7 @@
             android:id="@+id/zapatosymas"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginLeft="90dp"
+            android:layout_marginLeft="70dp"
             android:layout_marginTop="530dp"
             android:layout_toRightOf="@+id/costurera"
             android:text="@string/zapatosymas"
