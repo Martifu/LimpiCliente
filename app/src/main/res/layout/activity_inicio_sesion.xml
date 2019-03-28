@@ -138,9 +138,7 @@
             android:backgroundTint="#26DCC4"
             app:fabSize="normal"
             android:layout_alignParentRight="true"
-            >
-
-        </android.support.design.widget.FloatingActionButton>
+            />
 
         <android.support.design.widget.FloatingActionButton
             android:id="@+id/google"
@@ -165,7 +163,7 @@
         app:backgroundTint="#3b5998"
         android:src="@drawable/facebook"
         android:layout_marginTop="130dp"
-        app:for="Iniciar con Facebook"
+
 
         />
         <android.support.design.widget.FloatingActionButton
