@@ -145,7 +145,7 @@ public class InicioSesion extends AppCompatActivity implements GoogleApiClient.O
                 }
                 else
                 {
-                    Toast.makeText(InicioSesion.this, "¡Bienvenido a   Limpi!",Toast.LENGTH_LONG).show();
+                    //Toast.makeText(InicioSesion.this, "¡Bienvenido a Limpi!",Toast.LENGTH_LONG).show();
 
                 }
             }

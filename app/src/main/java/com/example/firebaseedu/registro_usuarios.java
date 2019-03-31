@@ -83,7 +83,7 @@ public class registro_usuarios extends AppCompatActivity {
             @Override
             public void onComplete(@NonNull Task<AuthResult> task) {
                 if(!task.isSuccessful()){
-                    Toast.makeText(registro_usuarios.this,"hubo un error", Toast.LENGTH_LONG).show();
+                    Toast.makeText(registro_usuarios.this,"Hubo un error", Toast.LENGTH_LONG).show();
                 }
                 else{
                     FirebaseUser Users =  firebaseAuth.getCurrentUser();
@@ -92,15 +92,17 @@ public class registro_usuarios extends AppCompatActivity {
                         String nombre = nom.getText().toString();
                         String apellido = apell.getText().toString();
                         String uid = Users.getUid();
+                        String correo = Users.getEmail();
                         JSONObject datos = new JSONObject();
                         datos.put("nombre",nombre);
                         datos.put("apellido",apellido);
                         datos.put("uid",uid);
+                        datos.put("correo",correo);
                         JsonObjectRequest objectRequest = new JsonObjectRequest(Request.Method.POST, "http://limpi.mipantano.com/api/usuario",
                                 datos, new Response.Listener<JSONObject>() {
                             @Override
                             public void onResponse(JSONObject response) {
-                                Toast.makeText(registro_usuarios.this, "Registrado exitosamente!", Toast.LENGTH_SHORT).show();
+                                Toast.makeText(registro_usuarios.this, "Registro exitoso!", Toast.LENGTH_SHORT).show();
                             }
                         }, new Response.ErrorListener() {
                             @Override
