@@ -9,6 +9,7 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.Toast;
@@ -43,6 +44,7 @@ import java.util.List;
 public class EditaPerfil extends Fragment implements View.OnClickListener{
 
     ImageView volver;
+    Button actualizar;
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
     private static final String ARG_PARAM1 = "param1";
@@ -91,11 +93,13 @@ public class EditaPerfil extends Fragment implements View.OnClickListener{
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-         FirebaseAuth firebaseAuth;
 
-        Context context = getActivity().getApplicationContext();
+
+
         // Inflate the layout for this fragment
         final View  v  = inflater.inflate(R.layout.fragment_edita_perfil, container, false);
+        Context context = getActivity().getApplicationContext();
+        FirebaseAuth firebaseAuth;
         firebaseAuth = FirebaseAuth.getInstance();
         final FirebaseUser Users =  firebaseAuth.getCurrentUser();
         try {
@@ -107,10 +111,10 @@ public class EditaPerfil extends Fragment implements View.OnClickListener{
                     datos, new Response.Listener<JSONObject>() {
                 @Override
                 public void onResponse(JSONObject response) {
-                    EditText nombre,apellido,correo;
+
                     Gson gson = new Gson();
                     Usuario json = gson.fromJson(response.toString(),Usuario.class);
-
+                    EditText nombre,apellido,correo;
                     nombre = v.findViewById(R.id.editnombre);
                     apellido = v.findViewById(R.id.editapellido);
                     correo = v.findViewById(R.id.editemail);
@@ -141,8 +145,50 @@ public class EditaPerfil extends Fragment implements View.OnClickListener{
                 startActivity(intent);
             }
         });
+
+        //ACTUALIZAR INFORMACION
+        actualizar = v.findViewById(R.id.btnactualizar);
+        final EditText nombre,apellido,correo;
+        nombre = v.findViewById(R.id.editnombre);
+        apellido = v.findViewById(R.id.editapellido);
+        correo = v.findViewById(R.id.editemail);
+        final String uid = Users.getUid();
+        final JSONObject datos = new JSONObject();
+        actualizar.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                try {
+
+                    datos.put("uid",uid);
+                    datos.put("nombre",nombre.getText().toString());
+                    datos.put("apellido",apellido.getText().toString());
+                    datos.put("correo",Users.getEmail());
+                    JsonObjectRequest jsonObjectRequest = new JsonObjectRequest(Request.Method.POST, "http://limpi.mipantano.com/api/actualizar_usuario",
+                            datos, new Response.Listener<JSONObject>() {
+                        @Override
+                        public void onResponse(JSONObject response) {
+                            Log.d("Res",response.toString());
+
+                        }
+                    }, new Response.ErrorListener() {
+                        @Override
+                        public void onErrorResponse(VolleyError error) {
+                            Log.d("Error",error.toString());
+                        }
+                    });
+
+                    RequestQueue queue = Volley.newRequestQueue(getActivity());
+                    queue.add(jsonObjectRequest);
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                }
+            }
+        });
+
+
         return  v;
     }
+
 
 
     // TODO: Rename method, update argument and hook method into UI event

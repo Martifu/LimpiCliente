@@ -100,7 +100,7 @@
             android:layout_marginTop="85dp"
             android:layout_toRightOf="@+id/hola"
             android:gravity="center_vertical"
-            android:text="Mario!"
+            android:text="            !"
             android:textColor="#2AFFBA"
             android:textSize="35dp" />
 

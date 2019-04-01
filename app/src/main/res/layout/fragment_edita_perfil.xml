@@ -106,6 +106,7 @@
                     android:layout_height="wrap_content"
                     android:text="CORREO ELECTRONICO"/>
                 <EditText
+                    android:enabled="false"
                     android:id="@+id/editemail"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
@@ -165,7 +166,7 @@
                     android:layout_gravity="center_horizontal"
                     android:background="@drawable/boton_plano"
                     android:textColor="#FFFFFF"
-                    android:id="@+id/btnregistrate"
+                    android:id="@+id/btnactualizar"
                     android:layout_marginTop="20dp"
                     android:layout_marginBottom="40dp"/>
             </LinearLayout>
