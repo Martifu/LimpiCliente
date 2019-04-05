@@ -77,13 +77,15 @@ public class registro_usuarios extends AppCompatActivity {
     }
 
     public void registrar(View view) {
-        String username = usernameText.getText().toString();
-        String passwor = passText.getText().toString();
+        final String username = usernameText.getText().toString();
+        final String passwor = passText.getText().toString();
         firebaseAuth.createUserWithEmailAndPassword(username,passwor).addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
             @Override
             public void onComplete(@NonNull Task<AuthResult> task) {
                 if(!task.isSuccessful()){
                     Toast.makeText(registro_usuarios.this,"Hubo un error", Toast.LENGTH_LONG).show();
+                    Log.d("usuairo",username);
+                    Log.d("pass",passwor);
                 }
                 else{
                     FirebaseUser Users =  firebaseAuth.getCurrentUser();

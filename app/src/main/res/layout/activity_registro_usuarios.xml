@@ -155,7 +155,8 @@
                     android:layout_height="wrap_content"
                     android:background="@drawable/shadow"
                     android:hint="Escribe nuevamente tu contraseña"
-                    android:padding="10dp" />
+                    android:padding="10dp"
+                    android:inputType="textPassword"/>
 
                 <TextView
                     android:textColor="#000"
