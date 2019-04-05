@@ -38,7 +38,7 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 public class home extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener,
-    EditaPerfil.OnFragmentInteractionListener, MetodosDePago.OnFragmentInteractionListener
+    EditaPerfil.OnFragmentInteractionListener, MetodosDePago.OnFragmentInteractionListener, Membresias.OnFragmentInteractionListener
 {
     String uri_parse;
     TextView usuario;
@@ -120,6 +120,9 @@ public class home extends AppCompatActivity implements NavigationView.OnNavigati
 
             NavigationView nav = (NavigationView) findViewById(R.id.nav);
             nav.setNavigationItemSelectedListener(this);
+
+
+
     }
 
     @Override
@@ -184,5 +187,11 @@ public class home extends AppCompatActivity implements NavigationView.OnNavigati
     @Override
     public void onFragmentInteraction(Uri uri) {
 
+    }
+
+    public void membresias(View view) {
+        Fragment fragment = null;
+      fragment = new  Membresias();
+        getSupportFragmentManager().beginTransaction().replace(R.id.relative,fragment).commit();
     }
 }

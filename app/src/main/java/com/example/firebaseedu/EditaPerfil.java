@@ -111,9 +111,9 @@ public class EditaPerfil extends Fragment implements View.OnClickListener{
                     datos, new Response.Listener<JSONObject>() {
                 @Override
                 public void onResponse(JSONObject response) {
-
                     Gson gson = new Gson();
                     Usuario json = gson.fromJson(response.toString(),Usuario.class);
+                    Log.d("json",json.toString());
                     EditText nombre,apellido,correo;
                     nombre = v.findViewById(R.id.editnombre);
                     apellido = v.findViewById(R.id.editapellido);

@@ -111,6 +111,7 @@
         android:src="@drawable/membresia"
         android:layout_marginLeft="50dp"
         android:id="@+id/membre"
+            android:onClick="membresias"
         />
         <ImageView
             android:layout_width="135dp"
