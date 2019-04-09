@@ -4,12 +4,12 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".Membresias"
-    android:background="#FFFFFF"
+    android:background="#F3F4F6"
     android:orientation="vertical">
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="60dp"
+        android:layout_height="50dp"
         android:orientation="horizontal"
         android:background="@drawable/designbarra"
         android:gravity="center_vertical"
@@ -44,7 +44,7 @@
 
     <android.support.v7.widget.RecyclerView
         android:paddingLeft="20dp"
-        android:paddingTop="50dp"
+
         android:paddingRight="20dp"
         android:layout_width="match_parent"
         android:layout_height="match_parent"

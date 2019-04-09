@@ -5,11 +5,31 @@ import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.support.v7.widget.CardView;
+import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.Toast;
+
+import com.android.volley.Request;
+import com.android.volley.RequestQueue;
+import com.android.volley.Response;
+import com.android.volley.VolleyError;
+import com.android.volley.toolbox.JsonArrayRequest;
+import com.android.volley.toolbox.Volley;
+import com.example.firebaseedu.Adaptadores.AdaptadorMembresias;
+import com.example.firebaseedu.Modelos.Membresia;
+import com.google.gson.Gson;
+import com.google.gson.reflect.TypeToken;
+
+import org.json.JSONArray;
+
+import java.lang.reflect.Type;
+import java.util.List;
 
 
 /**
@@ -67,9 +87,12 @@ public class Membresias extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         ImageView cesto, volver;
+
+        CardView cardView;
         // Inflate the layout for this fragment
         final View v = inflater.inflate(R.layout.fragment_membresias, container, false);
 
+        //Header
         cesto = v.findViewById(R.id.cesto);
         cesto.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -87,6 +110,32 @@ public class Membresias extends Fragment {
             }
         });
 
+        //Membresias
+        JsonArrayRequest  jsonArrayRequest = new JsonArrayRequest(Request.Method.GET, "http://limpi.mipantano.com/api/membresias",
+                null, new Response.Listener<JSONArray>() {
+            @Override
+            public void onResponse(JSONArray response) {
+                Log.d("Membre", response.toString());
+                 RecyclerView.Adapter adapter;
+                 RecyclerView recyclerView;
+                 recyclerView = v.findViewById(R.id.rcv);
+                Gson gson = new Gson();
+                Type type = new  TypeToken< List<Membresia> >(){}.getType();
+                List<Membresia> lp = gson.fromJson(response.toString(),type);
+                adapter = new AdaptadorMembresias(lp, getContext());
+                LinearLayoutManager layoutManager = new LinearLayoutManager(getContext());
+                layoutManager.setOrientation(LinearLayoutManager.HORIZONTAL);
+                recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
+                recyclerView.setAdapter(adapter);
+            }
+        }, new Response.ErrorListener() {
+            @Override
+            public void onErrorResponse(VolleyError error) {
+
+            }
+        });
+        RequestQueue queue = Volley.newRequestQueue(getActivity());
+        queue.add(jsonArrayRequest);
         return  v;
     }
 
