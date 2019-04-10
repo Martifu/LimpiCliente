@@ -11,7 +11,8 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/ActionBar">
-        <activity android:name=".MembresiaSeleccionada"></activity>
+        <activity android:name=".Servicios"></activity>
+        <activity android:name=".MembresiaSeleccionada" />
         <activity android:name=".Splash" />
         <activity
             android:name=".home"

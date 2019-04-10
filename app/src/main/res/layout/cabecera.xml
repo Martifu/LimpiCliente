@@ -28,7 +28,7 @@
             android:textColor="#FFF"
             android:textSize="36dp" />
         <TextView
-            android:id="@+id/usuario"
+            android:id="@+id/usuarioS"
             android:layout_width="wrap_content"
             android:layout_height="100dp"
             android:layout_marginTop="50dp"

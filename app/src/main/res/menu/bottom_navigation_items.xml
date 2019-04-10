@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <item
+        android:id="@+id/planchado"
+        android:icon="@drawable/planchado_icon"
+        android:title="Planchado"/>
+    <item
+        android:id="@+id/lavanderia"
+       android:icon="@drawable/lavanderia_icon"
+        android:title="Lavanderia"/>
+    <item
+        android:id="@+id/tintoreria"
+      android:icon="@drawable/tintoreria_icon"
+        android:title="Tintoreria"/>
+    <item
+        android:id="@+id/hogar"
+       android:icon="@drawable/hogar_icon"
+        android:title="Hogar"/>
+</menu>

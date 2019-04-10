@@ -6,5 +6,6 @@
     <color name="texto">#ffff</color>
     <color name="theme_color">#273741</color>
     <color name="white">#fff</color>
+    <color name="theme_color2">#26DCC4</color>
 
 </resources>

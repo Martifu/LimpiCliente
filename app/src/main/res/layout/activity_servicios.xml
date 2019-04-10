@@ -1,0 +1,89 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/relative"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <android.support.v4.widget.DrawerLayout
+        android:id="@+id/drawer"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center_horizontal">
+
+            <Toolbar
+                android:layout_width="match_parent"
+                android:layout_height="60dp"
+                android:background="@drawable/gradient">
+                <Button
+                    android:id="@+id/btn_menu"
+                    android:layout_width="30dp"
+                    android:layout_height="30dp"
+                    android:background="@drawable/perfil_icon" />
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:gravity="center_horizontal">
+
+                    <ImageView
+                        android:layout_marginRight="20dp"
+                        android:id="@+id/limpi"
+                        android:layout_width="60dp"
+                        android:layout_height="30dp"
+                        android:layout_centerVertical="true"
+                        android:layout_centerInParent="true"
+                        android:background="@drawable/limpiblanco" />
+
+                </RelativeLayout>
+            </Toolbar>
+
+            <LinearLayout
+                android:orientation="vertical"
+                android:id="@+id/frame_layout"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_above="@+id/navigation"
+                android:animateLayoutChanges="true">
+            </LinearLayout>
+
+            <android.support.design.widget.BottomNavigationView
+                android:id="@+id/navigation"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_alignParentBottom="true"
+                android:background="@color/white"
+                app:itemIconTint="#000"
+                app:itemTextColor="#000"
+                app:menu="@menu/bottom_navigation_items"/>
+        </RelativeLayout>
+
+        <android.support.design.widget.NavigationView
+            android:id="@+id/nav"
+            style="@style/NavihatioStyle"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_gravity="start"
+            android:background="@drawable/gradient"
+            app:headerLayout="@layout/cabecera"
+            app:itemIconTint="#26DCC4"
+            app:itemTextColor="#F3F4F6"
+            app:menu="@menu/menu_navegar">
+        </android.support.design.widget.NavigationView>
+
+
+
+
+
+    </android.support.v4.widget.DrawerLayout>
+
+
+
+
+</RelativeLayout>
