@@ -167,7 +167,8 @@ public class EditaPerfil extends Fragment implements View.OnClickListener{
                             datos, new Response.Listener<JSONObject>() {
                         @Override
                         public void onResponse(JSONObject response) {
-                            Log.d("Res",response.toString());
+                            startActivity(new Intent(getActivity(),home.class));
+                            Toast.makeText(getActivity(), "Datos actualizados!", Toast.LENGTH_SHORT).show();
 
                         }
                     }, new Response.ErrorListener() {

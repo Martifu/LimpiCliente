@@ -50,6 +50,11 @@
                 android:layout_alignParentTop="true"
                 android:layout_toRightOf="@+id/imagen"
                 android:layout_toEndOf="@+id/imagen" />
+            <TextView
+                android:id="@+id/id"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="id"/>
 
 
 

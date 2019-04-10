@@ -115,7 +115,6 @@ public class Membresias extends Fragment {
                 null, new Response.Listener<JSONArray>() {
             @Override
             public void onResponse(JSONArray response) {
-                Log.d("Membre", response.toString());
                  RecyclerView.Adapter adapter;
                  RecyclerView recyclerView;
                  recyclerView = v.findViewById(R.id.rcv);

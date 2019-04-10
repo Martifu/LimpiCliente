@@ -169,6 +169,11 @@ public class home extends AppCompatActivity implements NavigationView.OnNavigati
             fragment = new MetodosDePago();
             FragmentSelected=true;
         }
+        else if (id == R.id.Membresias)
+        {
+            fragment = new Membresias();
+            FragmentSelected=true;
+        }
         else if (id == R.id.logout)
         {
             FirebaseAuth.getInstance().signOut();

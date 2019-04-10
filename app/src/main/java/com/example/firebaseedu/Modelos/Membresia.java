@@ -6,6 +6,24 @@ public class Membresia {
     String Descripcion;
     Integer Precio;
     String imagen;
+    String imagen_detalles;
+    String detalles;
+
+    public String getImagen_detalles() {
+        return imagen_detalles;
+    }
+
+    public void setImagen_detalles(String imagen_detalles) {
+        this.imagen_detalles = imagen_detalles;
+    }
+
+    public String getDetalles() {
+        return detalles;
+    }
+
+    public void setDetalles(String detalles) {
+        this.detalles = detalles;
+    }
 
     public Integer getId() {
         return id;
