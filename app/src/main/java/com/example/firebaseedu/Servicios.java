@@ -61,7 +61,7 @@ public class Servicios extends AppCompatActivity implements NavigationView.OnNav
                     Gson gson = new Gson();
                     Usuario json = gson.fromJson(response.toString(),Usuario.class);
                    usuario = findViewById(R.id.usuarioS);
-                   usuario.setText(json.getNombre()+"!");
+
                 }
             }, new Response.ErrorListener() {
                 @Override
@@ -130,7 +130,7 @@ public class Servicios extends AppCompatActivity implements NavigationView.OnNav
                 });
 
         FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
-        transaction.replace(R.id.frame_layout, new  PlanchadoFragment());
+        transaction.replace(R.id.frame_layout, new LavanderiaFragment());
         transaction.commit();
     }
 

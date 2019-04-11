@@ -7,7 +7,11 @@ import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.ImageView;
+import android.widget.Toast;
+
+import com.squareup.picasso.Picasso;
 
 
 /**
@@ -65,9 +69,20 @@ public class LavanderiaFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         ImageView imagen;
+        Button menos, mas;
         // Inflate the layout for this fragment
         View v = inflater.inflate(R.layout.fragment_lavanderia, container, false);
+        menos = v.findViewById(R.id.menos);
+        mas = v.findViewById(R.id.mas);
+        imagen = v.findViewById(R.id.imagen_serv);
+        Picasso.with(getActivity()).load("https://i.imgur.com/PcwNDiV.png").into(imagen);
 
+        mas.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Toast.makeText(getActivity(),"Agregado", Toast.LENGTH_SHORT).show();
+            }
+        });
 
         return  v;
     }

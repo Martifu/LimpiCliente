@@ -4,6 +4,8 @@ import android.content.Context;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -11,7 +13,23 @@ import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.Toast;
 
+import com.android.volley.Request;
+import com.android.volley.RequestQueue;
+import com.android.volley.Response;
+import com.android.volley.VolleyError;
+import com.android.volley.toolbox.JsonArrayRequest;
+import com.android.volley.toolbox.Volley;
+import com.example.firebaseedu.Adaptadores.AdaptadorMembresias;
+import com.example.firebaseedu.Adaptadores.AdaptadorPlanchadoServicios;
+import com.example.firebaseedu.Modelos.Membresia;
+import com.google.gson.Gson;
+import com.google.gson.reflect.TypeToken;
 import com.squareup.picasso.Picasso;
+
+import org.json.JSONArray;
+
+import java.lang.reflect.Type;
+import java.util.List;
 
 
 /**
@@ -71,18 +89,32 @@ public class PlanchadoFragment extends Fragment {
         // Inflate the layout for this fragment
         ImageView imagen;
         Button menos, mas;
-        View v = inflater.inflate(R.layout.fragment_planchado, container, false);
-        menos = v.findViewById(R.id.menos);
-        mas = v.findViewById(R.id.mas);
-        imagen = v.findViewById(R.id.imagen_serv);
-        Picasso.with(getActivity()).load("https://i.imgur.com/PcwNDiV.png").into(imagen);
-
-        mas.setOnClickListener(new View.OnClickListener() {
+        final View v = inflater.inflate(R.layout.fragment_planchado, container, false);
+        //Membresias
+        JsonArrayRequest jsonArrayRequest = new JsonArrayRequest(Request.Method.GET, "http://limpi.mipantano.com/api/membresias",
+                null, new Response.Listener<JSONArray>() {
             @Override
-            public void onClick(View v) {
-                Toast.makeText(getActivity(),"Agregado", Toast.LENGTH_SHORT).show();
+            public void onResponse(JSONArray response) {
+                RecyclerView.Adapter adapter;
+                RecyclerView recyclerView;
+                recyclerView = v.findViewById(R.id.rcv_planchado);
+                Gson gson = new Gson();
+                Type type = new  TypeToken< List<Membresia> >(){}.getType();
+                List<Membresia> lp = gson.fromJson(response.toString(),type);
+                adapter = new AdaptadorPlanchadoServicios(lp, getContext());
+                LinearLayoutManager layoutManager = new LinearLayoutManager(getContext());
+                layoutManager.setOrientation(LinearLayoutManager.HORIZONTAL);
+                recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
+                recyclerView.setAdapter(adapter);
+            }
+        }, new Response.ErrorListener() {
+            @Override
+            public void onErrorResponse(VolleyError error) {
+
             }
         });
+        RequestQueue queue = Volley.newRequestQueue(getActivity());
+        queue.add(jsonArrayRequest);
 
         return v;
     }
