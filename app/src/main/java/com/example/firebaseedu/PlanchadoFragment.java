@@ -6,6 +6,7 @@ import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -22,6 +23,7 @@ import com.android.volley.toolbox.Volley;
 import com.example.firebaseedu.Adaptadores.AdaptadorMembresias;
 import com.example.firebaseedu.Adaptadores.AdaptadorPlanchadoServicios;
 import com.example.firebaseedu.Modelos.Membresia;
+import com.example.firebaseedu.Modelos.Productos;
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
 import com.squareup.picasso.Picasso;
@@ -91,16 +93,17 @@ public class PlanchadoFragment extends Fragment {
         Button menos, mas;
         final View v = inflater.inflate(R.layout.fragment_planchado, container, false);
         //Membresias
-        JsonArrayRequest jsonArrayRequest = new JsonArrayRequest(Request.Method.GET, "http://limpi.mipantano.com/api/membresias",
+        JsonArrayRequest  jsonArrayRequest = new JsonArrayRequest(Request.Method.GET, "http://limpi.mipantano.com/api/planchado",
                 null, new Response.Listener<JSONArray>() {
             @Override
             public void onResponse(JSONArray response) {
+                Log.d("Planchado",response.toString());
                 RecyclerView.Adapter adapter;
                 RecyclerView recyclerView;
                 recyclerView = v.findViewById(R.id.rcv_planchado);
                 Gson gson = new Gson();
-                Type type = new  TypeToken< List<Membresia> >(){}.getType();
-                List<Membresia> lp = gson.fromJson(response.toString(),type);
+                Type type = new  TypeToken< List<Productos> >(){}.getType();
+                List<Productos> lp = gson.fromJson(response.toString(),type);
                 adapter = new AdaptadorPlanchadoServicios(lp, getContext());
                 LinearLayoutManager layoutManager = new LinearLayoutManager(getContext());
                 layoutManager.setOrientation(LinearLayoutManager.HORIZONTAL);

@@ -1,15 +1,18 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout
-    xmlns:android="http://schemas.android.com/apk/res/android" android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical">
+
+
 
     <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="170dp"
-        android:padding="10dp"
+        android:layout_width="wrap_content"
+        android:layout_height="180dp"
         android:orientation="vertical">
         <ImageView
-            android:background="@drawable/planchado_detalle"
+
             android:id="@+id/imagen_pln"
             android:layout_width="wrap_content"
             android:layout_height="120dp"
@@ -22,13 +25,13 @@
               android:id="@+id/tipoP"
               android:paddingLeft="10dp"
               android:layout_width="150dp"
-              android:layout_height="wrap_content"
+              android:layout_height="35dp"
               android:text="Planchado"
               android:textStyle="bold"
               android:textColor="#000"
               android:textSize="15dp"/>
           <Button
-              android:id="@+id/menos"
+              android:id="@+id/menosP"
               android:layout_width="20dp"
               android:layout_height="20dp"
               android:background="@drawable/menos"
@@ -36,17 +39,17 @@
               />
 
           <TextView
-              android:id="@+id/cantidad"
+              android:id="@+id/cantidadP"
               android:layout_width="wrap_content"
               android:layout_height="wrap_content"
-              android:text="1"
+              android:text="0"
               android:textColor="#0E0E0E"
               android:textStyle="bold"
               android:textSize="20dp"
               android:layout_marginLeft="15dp"/>
 
           <Button
-              android:id="@+id/mas"
+              android:id="@+id/masP"
               android:layout_width="20dp"
               android:layout_height="20dp"
               android:background="@drawable/mas"
@@ -62,12 +65,12 @@
               android:textStyle="bold"
               android:textSize="20dp"
               android:layout_marginLeft="5dp"/>
-          <Button
-              android:id="@+id/infor"
+          <TextView
+              android:id="@+id/idP"
               android:layout_width="15dp"
               android:layout_height="15dp"
-              android:background="@drawable/info"
-              android:layout_marginLeft="15dp"/>
+              android:layout_marginLeft="15dp"
+              />
       </LinearLayout>
     </LinearLayout>
 

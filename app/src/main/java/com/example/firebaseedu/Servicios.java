@@ -19,6 +19,7 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.android.volley.Request;
 import com.android.volley.RequestQueue;
@@ -31,6 +32,7 @@ import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.gson.Gson;
 
+import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
@@ -39,8 +41,9 @@ public class Servicios extends AppCompatActivity implements NavigationView.OnNav
         LavanderiaFragment.OnFragmentInteractionListener, TintoreriaFragment.OnFragmentInteractionListener, HogarFragment.OnFragmentInteractionListener {
 
     DrawerLayout mDrawerLayout;
-    Button btn;
+    Button btn, cesto;
     ActionBarDrawerToggle mToggle;
+    public static JSONArray productos = new JSONArray();
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -61,7 +64,7 @@ public class Servicios extends AppCompatActivity implements NavigationView.OnNav
                     Gson gson = new Gson();
                     Usuario json = gson.fromJson(response.toString(),Usuario.class);
                    usuario = findViewById(R.id.usuarioS);
-
+                   usuario.setText(json.getNombre()+"!");
                 }
             }, new Response.ErrorListener() {
                 @Override
@@ -130,8 +133,17 @@ public class Servicios extends AppCompatActivity implements NavigationView.OnNav
                 });
 
         FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
-        transaction.replace(R.id.frame_layout, new LavanderiaFragment());
+        transaction.replace(R.id.frame_layout, new PlanchadoFragment());
         transaction.commit();
+
+        cesto = findViewById(R.id.cesto_compras);
+        cesto.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Toast.makeText(Servicios.this, "nachos", Toast.LENGTH_SHORT).show();
+                startActivity(new Intent(Servicios.this, Cesto.class));
+            }
+        });
     }
 
     @Override
@@ -162,6 +174,15 @@ public class Servicios extends AppCompatActivity implements NavigationView.OnNav
             fragment = new MetodosDePago();
             FragmentSelected=true;
         }
+        else if (id == R.id.pedidos)
+        {
+            startActivity(new Intent(Servicios.this, Servicios.class));
+        }
+        else if (id == R.id.mispedidos)
+        {
+            Toast.makeText(Servicios.this, "nachos", Toast.LENGTH_SHORT).show();
+            startActivity(new Intent(Servicios.this, Cesto.class));
+        }
         else if (id == R.id.logout)
         {
             FirebaseAuth.getInstance().signOut();
@@ -182,4 +203,6 @@ public class Servicios extends AppCompatActivity implements NavigationView.OnNav
     public void onFragmentInteraction(Uri uri) {
 
     }
+
+
 }
