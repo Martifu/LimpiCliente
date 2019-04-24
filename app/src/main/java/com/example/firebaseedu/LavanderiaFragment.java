@@ -118,10 +118,6 @@ public class LavanderiaFragment extends Fragment {
         });
         RequestQueue queue = Volley.newRequestQueue(getActivity());
         queue.add(jsonArrayRequest);
-
-
-
-
         return  v;
     }
 

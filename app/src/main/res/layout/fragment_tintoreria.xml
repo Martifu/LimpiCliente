@@ -3,17 +3,22 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".TintoreriaFragment">
+    tools:context=".PlanchadoFragment">
 
     <!-- TODO: Update blank fragment layout -->
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
-        <TextView
-            android:layout_marginTop="60dp"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        >
+
+        <android.support.v7.widget.RecyclerView
+            android:layout_marginTop="80dp"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:text="Fragment Tintoreria" />
+            android:layout_height="wrap_content"
+            android:id="@+id/rcv_tintoreria">
+
+        </android.support.v7.widget.RecyclerView>
     </LinearLayout>
 
 </ScrollView>

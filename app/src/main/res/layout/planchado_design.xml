@@ -10,15 +10,15 @@
     <LinearLayout
         android:layout_width="wrap_content"
         android:layout_height="180dp"
-        android:orientation="vertical">
+        android:orientation="horizontal">
         <ImageView
 
             android:id="@+id/imagen_pln"
-            android:layout_width="wrap_content"
+            android:layout_width="180dp"
             android:layout_height="120dp"
             />
       <LinearLayout
-          android:orientation="horizontal"
+          android:orientation="vertical"
           android:layout_width="wrap_content"
           android:layout_height="wrap_content">
           <TextView
@@ -30,33 +30,40 @@
               android:textStyle="bold"
               android:textColor="#000"
               android:textSize="15dp"/>
-          <Button
-              android:id="@+id/menosP"
-              android:layout_width="20dp"
-              android:layout_height="20dp"
-              android:background="@drawable/menos"
-              android:layout_marginLeft="20dp"
-              />
-
-          <TextView
-              android:id="@+id/cantidadP"
+          <LinearLayout
               android:layout_width="wrap_content"
               android:layout_height="wrap_content"
-              android:text="0"
-              android:textColor="#0E0E0E"
-              android:textStyle="bold"
-              android:textSize="20dp"
-              android:layout_marginLeft="15dp"/>
+              android:orientation="horizontal">
+              <Button
+                  android:id="@+id/menosP"
+                  android:layout_width="40dp"
+                  android:layout_height="40dp"
+                  android:background="@drawable/menos"
+                  android:layout_marginLeft="20dp"
+                  />
 
-          <Button
-              android:id="@+id/masP"
-              android:layout_width="20dp"
-              android:layout_height="20dp"
-              android:background="@drawable/mas"
-              android:layout_marginLeft="20dp"
-              />
+              <TextView
+                  android:id="@+id/cantidadP"
+                  android:layout_width="wrap_content"
+                  android:layout_height="wrap_content"
+                  android:text="0"
+                  android:textColor="#0E0E0E"
+                  android:textStyle="bold"
+                  android:textSize="20dp"
+                  android:layout_marginLeft="15dp"/>
+
+              <Button
+                  android:id="@+id/masP"
+                  android:layout_width="40dp"
+                  android:layout_height="40dp"
+                  android:background="@drawable/mas"
+                  android:layout_marginLeft="20dp"
+                  />
+          </LinearLayout>
+
 
           <TextView
+              android:layout_marginTop="30dp"
               android:id="@+id/precioP"
               android:layout_width="wrap_content"
               android:layout_height="wrap_content"

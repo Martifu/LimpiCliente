@@ -44,6 +44,8 @@ public class Servicios extends AppCompatActivity implements NavigationView.OnNav
     Button btn, cesto;
     ActionBarDrawerToggle mToggle;
     public static JSONArray productos = new JSONArray();
+    public static JSONArray agregados = new JSONArray();
+    public static Integer total;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -64,7 +66,7 @@ public class Servicios extends AppCompatActivity implements NavigationView.OnNav
                     Gson gson = new Gson();
                     Usuario json = gson.fromJson(response.toString(),Usuario.class);
                    usuario = findViewById(R.id.usuarioS);
-                   usuario.setText(json.getNombre()+"!");
+                   //usuario.setText(json.getNombre()+"!");
                 }
             }, new Response.ErrorListener() {
                 @Override

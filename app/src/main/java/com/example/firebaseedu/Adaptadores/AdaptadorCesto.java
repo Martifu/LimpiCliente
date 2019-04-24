@@ -2,7 +2,6 @@ package com.example.firebaseedu.Adaptadores;
 
 import android.content.Context;
 import android.support.annotation.NonNull;
-import android.support.v7.widget.CardView;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -12,8 +11,8 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.example.firebaseedu.Modelos.Membresia;
-import com.example.firebaseedu.Modelos.Productos;
+import com.example.firebaseedu.Modelos.Cesto;
+import com.example.firebaseedu.Modelos.TintoreriaProductos;
 import com.example.firebaseedu.R;
 import com.example.firebaseedu.Servicios;
 import com.squareup.picasso.Picasso;
@@ -23,26 +22,26 @@ import org.json.JSONObject;
 
 import java.util.List;
 
-public class AdaptadorPlanchadoServicios extends RecyclerView.Adapter<AdaptadorPlanchadoServicios.ViewHolder> {
-    List<Productos> lp;
+public class AdaptadorCesto extends RecyclerView.Adapter<AdaptadorCesto.ViewHolder> {
+    List<Cesto> lp;
     Context c;
 
-    public AdaptadorPlanchadoServicios(List<Productos> lp, Context c) {
+    public AdaptadorCesto(List<Cesto> lp, Context c) {
         this.lp = lp;
         this.c = c;
     }
-
     @NonNull
     @Override
-    public AdaptadorPlanchadoServicios.ViewHolder onCreateViewHolder(@NonNull ViewGroup viewGroup, int i) {
-        View v = LayoutInflater.from(c).inflate(R.layout.planchado_design,viewGroup,false);
-       ViewHolder viewHolder = new ViewHolder(v);
+    public AdaptadorCesto.ViewHolder onCreateViewHolder(@NonNull ViewGroup viewGroup, int i) {
+        View v = LayoutInflater.from(c).inflate(R.layout.cesto_desing,viewGroup,false);
+     ViewHolder viewHolder = new ViewHolder(v);
         return viewHolder;
     }
 
     @Override
-    public void onBindViewHolder(@NonNull final AdaptadorPlanchadoServicios.ViewHolder viewHolder, final int i) {
-        Picasso.with(c).load(lp.get(i).getImagen()).into(viewHolder.imagen);
+    public void onBindViewHolder(@NonNull final AdaptadorCesto.ViewHolder viewHolder, final int i) {
+
+      //  Picasso.with(c).load(lp.get(i).getImagen()).into(viewHolder.imagen);
         viewHolder.tipo.setText(lp.get(i).getProducto());
         viewHolder.precio.setText("$"+lp.get(i).getPrecio().toString());
         viewHolder.id.setText(lp.get(i).getId().toString());
@@ -67,7 +66,7 @@ public class AdaptadorPlanchadoServicios extends RecyclerView.Adapter<AdaptadorP
                     e.printStackTrace();
                 }
                 Servicios.productos.put(objectID);
-                Toast.makeText(c, "pr "+Servicios.agregados.toString(), Toast.LENGTH_SHORT).show();
+                Toast.makeText(c, "pr "+Servicios.productos.toString(), Toast.LENGTH_SHORT).show();
             }
         });
         viewHolder.menos.setOnClickListener(new View.OnClickListener() {
@@ -113,19 +112,19 @@ public class AdaptadorPlanchadoServicios extends RecyclerView.Adapter<AdaptadorP
         return lp.size();
     }
 
-    public class ViewHolder extends RecyclerView.ViewHolder{
+    public class ViewHolder extends RecyclerView.ViewHolder {
         ImageView imagen;
         Button mas, menos, info;
         TextView tipo, cantidad, precio, id;
-        public ViewHolder(@NonNull View itemView){
+        public ViewHolder(@NonNull View itemView) {
             super(itemView);
-            imagen = itemView.findViewById(R.id.imagen_pln);
-            tipo = itemView.findViewById(R.id.tipoP);
-            precio = itemView.findViewById(R.id.precioP);
-            mas = itemView.findViewById(R.id.masP);
-            menos = itemView.findViewById(R.id.menosP);
-            cantidad = itemView.findViewById(R.id.cantidadP);
-            id = itemView.findViewById(R.id.idP);
+           // imagen = itemView.findViewById(R.id.imagen_cesto);
+            tipo = itemView.findViewById(R.id.tipoC);
+            precio = itemView.findViewById(R.id.precioC);
+            mas = itemView.findViewById(R.id.masC);
+            menos = itemView.findViewById(R.id.menosC);
+            cantidad = itemView.findViewById(R.id.cantidadC);
+            id = itemView.findViewById(R.id.idC);
         }
     }
 }

@@ -59,8 +59,15 @@ public class AdaptadorLavanderia extends RecyclerView.Adapter<AdaptadorLavanderi
                 viewHolder.cantidad.setText(String.valueOf(cantidad[0]));
                 Toast.makeText(c, "Agregado", Toast.LENGTH_SHORT).show();
                 Integer id = lp.get(i).getId();
-                Servicios.productos.put(id);
-                Toast.makeText(c, "pr "+Servicios.productos.toString(), Toast.LENGTH_SHORT).show();
+                Servicios.agregados.put(id);
+                JSONObject objectID = new JSONObject();
+                try {
+                    objectID.put("id",id);
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                }
+                Servicios.productos.put(objectID);
+                Toast.makeText(c, "pr "+Servicios.agregados.toString(), Toast.LENGTH_SHORT).show();
             }
         });
         viewHolder.menos.setOnClickListener(new View.OnClickListener() {
@@ -80,9 +87,9 @@ public class AdaptadorLavanderia extends RecyclerView.Adapter<AdaptadorLavanderi
                     {
 
                         try {
-                            if (Integer.valueOf((Integer) Servicios.productos.get(i)) == eliminado )
+                            if (Integer.valueOf((Integer) Servicios.agregados.get(i)) == eliminado )
                             {
-                                Servicios.productos.remove(i);
+                                Servicios.agregados.remove(i);
                                 el = true;
                                 eliminado =0;
                                 i = 0;
@@ -93,7 +100,7 @@ public class AdaptadorLavanderia extends RecyclerView.Adapter<AdaptadorLavanderi
 
                     }
                     Toast.makeText(c, "Eliminado", Toast.LENGTH_SHORT).show();
-                    Toast.makeText(c, "pr "+Servicios.productos.toString(), Toast.LENGTH_SHORT).show();
+                    Toast.makeText(c, "pr "+Servicios.agregados.toString(), Toast.LENGTH_SHORT).show();
                 }
 
 
