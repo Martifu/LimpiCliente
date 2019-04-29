@@ -143,6 +143,8 @@ public class EditaPerfil extends Fragment implements View.OnClickListener{
             public void onClick(View v) {
                 Intent intent = new Intent(getActivity(), home.class);
                 startActivity(intent);
+                getActivity().finish();
+
             }
         });
 

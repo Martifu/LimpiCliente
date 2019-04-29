@@ -55,7 +55,7 @@ public class AdaptadorTintoreria  extends RecyclerView.Adapter<AdaptadorTintorer
 //                int textPrecio = Integer.valueOf((String) viewHolder.precio.getText());
 //                viewHolder.precio.setText(String.valueOf( textPrecio+precio));
                 viewHolder.cantidad.setText(String.valueOf(cantidad[0]));
-                Toast.makeText(c, "Agregado", Toast.LENGTH_SHORT).show();
+//                Toast.makeText(c, "Agregado", Toast.LENGTH_SHORT).show();
                 Integer id = lp.get(i).getId();
                 Servicios.agregados.put(id);
                 JSONObject objectID = new JSONObject();
@@ -65,7 +65,7 @@ public class AdaptadorTintoreria  extends RecyclerView.Adapter<AdaptadorTintorer
                     e.printStackTrace();
                 }
                 Servicios.productos.put(objectID);
-                Toast.makeText(c, "pr "+Servicios.agregados.toString(), Toast.LENGTH_SHORT).show();
+//                Toast.makeText(c, "pr "+Servicios.agregados.toString(), Toast.LENGTH_SHORT).show();
             }
         });
         viewHolder.menos.setOnClickListener(new View.OnClickListener() {
@@ -97,8 +97,8 @@ public class AdaptadorTintoreria  extends RecyclerView.Adapter<AdaptadorTintorer
                         }
 
                     }
-                    Toast.makeText(c, "Eliminado", Toast.LENGTH_SHORT).show();
-                    Toast.makeText(c, "pr "+Servicios.agregados.toString(), Toast.LENGTH_SHORT).show();
+//                    Toast.makeText(c, "Eliminado", Toast.LENGTH_SHORT).show();
+//                    Toast.makeText(c, "pr "+Servicios.agregados.toString(), Toast.LENGTH_SHORT).show();
                 }
 
 

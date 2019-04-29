@@ -136,7 +136,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:background="@drawable/shadow"
-                    android:hint="Escribe una contraseña"
+                    android:hint="Escribe una contraseña  (+6 carácteres)"
                     android:inputType="textPassword"
                     android:padding="10dp" />
 
@@ -158,23 +158,10 @@
                     android:padding="10dp"
                     android:inputType="textPassword"/>
 
-                <TextView
-                    android:textColor="#000"
-                    android:id="@+id/fontdire"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="10dp"
-                    android:text="DIRECCIÓN PARA RECOGER LA ROPA" />
 
-                <EditText
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginBottom="20dp"
-                    android:background="@drawable/shadow"
-                    android:hint="Escoge una dirección"
-                    android:padding="10dp" />
 
                 <Button
+                    style="@style/Widget.AppCompat.Button.Borderless.Colored"
                     android:id="@+id/btnregistrate"
                     android:layout_width="280dp"
                     android:layout_height="wrap_content"

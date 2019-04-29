@@ -75,6 +75,7 @@
     </LinearLayout>
 
     <Button
+        style="@style/Widget.AppCompat.Button.Borderless.Colored"
         android:id="@+id/recovery_enviar"
         android:textColor="#fff"
         android:text="Enviar"

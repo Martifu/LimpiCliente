@@ -66,7 +66,7 @@ public class Servicios extends AppCompatActivity implements NavigationView.OnNav
                     Gson gson = new Gson();
                     Usuario json = gson.fromJson(response.toString(),Usuario.class);
                    usuario = findViewById(R.id.usuarioS);
-                   //usuario.setText(json.getNombre()+"!");
+                   usuario.setText(json.getNombre()+"!");
                 }
             }, new Response.ErrorListener() {
                 @Override
@@ -142,7 +142,7 @@ public class Servicios extends AppCompatActivity implements NavigationView.OnNav
         cesto.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Toast.makeText(Servicios.this, "nachos", Toast.LENGTH_SHORT).show();
+                Toast.makeText(Servicios.this, "Cesto", Toast.LENGTH_SHORT).show();
                 startActivity(new Intent(Servicios.this, Cesto.class));
             }
         });
@@ -182,7 +182,6 @@ public class Servicios extends AppCompatActivity implements NavigationView.OnNav
         }
         else if (id == R.id.mispedidos)
         {
-            Toast.makeText(Servicios.this, "nachos", Toast.LENGTH_SHORT).show();
             startActivity(new Intent(Servicios.this, Cesto.class));
         }
         else if (id == R.id.logout)

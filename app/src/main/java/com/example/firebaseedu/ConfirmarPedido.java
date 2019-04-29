@@ -1,6 +1,7 @@
 package com.example.firebaseedu;
 
 import android.app.DatePickerDialog;
+import android.app.ProgressDialog;
 import android.content.Intent;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
@@ -36,6 +37,7 @@ public class ConfirmarPedido extends AppCompatActivity implements View.OnClickLi
     TextView total;
     Button pagar;
     String uid;
+    ProgressDialog progressDoalog;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -63,8 +65,8 @@ public class ConfirmarPedido extends AppCompatActivity implements View.OnClickLi
         etPlannedDate.setOnClickListener(this);
 
 
-         etDeadline = (EditText) findViewById(R.id.etDeadline);
-        etDeadline.setOnClickListener(this);
+
+
 
         pagar = findViewById(R.id.pagar);
         pagar.setOnClickListener(this);
@@ -79,29 +81,16 @@ public class ConfirmarPedido extends AppCompatActivity implements View.OnClickLi
                 Log.d("total", response.toString());
 
 
-                // Parsing json
-                for (int i = 0; i < response.length(); i++) {
-                    try {
 
-
-                        JSONArray objeto = response.getJSONArray(i);
-                        Toast.makeText(ConfirmarPedido.this, "www "+objeto.get(i), Toast.LENGTH_SHORT).show();
-
-//                        total.setText(obj.getString("precio"));
-
-
-                        // adding movie to movies array
-
-
-                    } catch (JSONException e) {
-                        e.printStackTrace();
-                    }
-
-                }
 
 
                 total = findViewById(R.id.total);
-                total.setText("$"+response.toString());
+                try {
+                    total.setText("$"+response.get(0));
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                }
+
 
             }
         }, new Response.ErrorListener() {
@@ -136,59 +125,47 @@ public class ConfirmarPedido extends AppCompatActivity implements View.OnClickLi
 
                 break;
 
-            case R.id.etDeadline:
-                c = Calendar.getInstance();
-                dia = c.get(Calendar.DAY_OF_MONTH);
-                mes = c.get(Calendar.MONTH);
-                ano = c.get(Calendar.YEAR);
-
-                datePickerDialog = new DatePickerDialog(this, new DatePickerDialog.OnDateSetListener() {
-                    @Override
-                    public void onDateSet(DatePicker view, int year, int month, int dayOfMonth) {
-                        f_entrega = year + "-" + twoDigits(month + 1) + "-" + twoDigits(dayOfMonth);
-                        etDeadline.setText(f_entrega);
-                    }
-                }, ano, mes, dia);
-                datePickerDialog.show();
-
-                break;
             case R.id.pagar:
             {
                 JSONObject usuario = new JSONObject();
                 JSONObject id = new JSONObject();
                 JSONObject fecha_reco = new JSONObject();
-                JSONObject fecha_entr = new JSONObject();
                 JSONObject dire_entr = new JSONObject();
                 try {
-                    usuario.put("usuario", 1231);
                     id.put("uid",uid);
                     fecha_reco.put("f_recogida",f_recogida);
-                    fecha_entr.put("f_entrega",f_entrega);
-                    fecha_entr.put("direccion",direccion_entrega.getText());
+                    dire_entr.put("direccion",direccion_entrega.getText());
                 } catch (JSONException e) {
                     e.printStackTrace();
                 }
                 Servicios.productos.put(usuario);
                 Servicios.productos.put(id);
-                Servicios.productos.put(fecha_entr);
                 Servicios.productos.put(fecha_reco);
                 Servicios.productos.put(dire_entr);
-                Toast.makeText(this, "> "+Servicios.productos, Toast.LENGTH_SHORT).show();
-                //   cesto.setText(Servicios.productos.toString());
+
+                progressDoalog = new ProgressDialog(ConfirmarPedido.this);
+                progressDoalog.setMessage("Cargando, por favor espere....");
+                progressDoalog.setTitle("Pago");
+                progressDoalog.setProgressStyle(ProgressDialog.STYLE_HORIZONTAL);
+                progressDoalog.show();
                 JsonArrayRequest jsonArrayRequest = new JsonArrayRequest(Request.Method.POST, "http://limpi.mipantano.com/api/venta",
                         Servicios.productos, new Response.Listener<JSONArray>() {
                     @Override
                     public void onResponse(JSONArray response) {
                         Log.d("Cesto", response.toString());
+
                     }
                 }, new Response.ErrorListener() {
                     @Override
                     public void onErrorResponse(VolleyError error) {
                         Log.d("Cesto", error.toString());
+                        progressDoalog.dismiss();
+                        Toast.makeText(ConfirmarPedido.this, "Servicio comprado con exito!!", Toast.LENGTH_SHORT).show();
                     }
                 });
                 RequestQueue queue = Volley.newRequestQueue(this);
                 queue.add(jsonArrayRequest);
+                Log.d("Pedido",Servicios.productos.toString());
             }
             break;
         }

@@ -66,7 +66,7 @@ public class Cesto extends AppCompatActivity implements View.OnClickListener {
 
 
 
-        Toast.makeText(this, "cest " + Servicios.productos, Toast.LENGTH_SHORT).show();
+//        Toast.makeText(this, "cest " + Servicios.productos, Toast.LENGTH_SHORT).show();
         JsonArrayRequest jsonArrayRequest = new JsonArrayRequest(Request.Method.POST, "http://limpi.mipantano.com/api/cesto",
                 Servicios.agregados, new Response.Listener<JSONArray>() {
             @Override

@@ -1,11 +1,13 @@
 package com.example.firebaseedu;
 
+import android.app.ProgressDialog;
 import android.content.Intent;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -18,6 +20,8 @@ import com.android.volley.toolbox.JsonArrayRequest;
 import com.android.volley.toolbox.JsonObjectRequest;
 import com.android.volley.toolbox.Volley;
 import com.example.firebaseedu.Modelos.Membresia;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
 import com.squareup.picasso.Picasso;
@@ -31,11 +35,17 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class MembresiaSeleccionada extends AppCompatActivity {
-
+    Button pagar;
+    String uid;
+    ProgressDialog progressDialog;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_membresia_seleccionada);
+        FirebaseAuth firebaseAuth;
+        firebaseAuth = FirebaseAuth.getInstance();
+        final FirebaseUser Users =  firebaseAuth.getCurrentUser();
+
         ActionBar actionBar = getSupportActionBar();
         actionBar.hide();
         final TextView precio, detalles, tipo, descripcion;
@@ -48,7 +58,7 @@ public class MembresiaSeleccionada extends AppCompatActivity {
         tipo = findViewById(R.id.plan);
         cerrar = findViewById(R.id.cerrar);
         cesto = findViewById(R.id.cesto);
-
+        pagar = findViewById(R.id.btn_pagar_membre);
         cerrar.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -66,13 +76,16 @@ public class MembresiaSeleccionada extends AppCompatActivity {
         Bundle my_bundle_received=receive_i.getExtras();
         Integer id = (Integer) my_bundle_received.get("id");
         JSONObject datos = new JSONObject();
+        uid = Users.getUid();
         try {
             datos.put("id",id);
+            datos.put("uid",uid);
         } catch (JSONException e) {
             e.printStackTrace();
         }
-        JSONArray data = new JSONArray();
+        final JSONArray data = new JSONArray();
         data.put(id);
+        data.put(uid);
         JsonArrayRequest jsonArrayRequest = new JsonArrayRequest(Request.Method.POST, "http://limpi.mipantano.com/api/membresia",
                 data, new Response.Listener<JSONArray>() {
             @Override
@@ -89,16 +102,6 @@ public class MembresiaSeleccionada extends AppCompatActivity {
                         tipo.setText(object.getString("tipo"));
                         detalles.setText(object.getString("detalles"));
                         descripcion.setText(object.getString("Descripcion"));
-
-//                        Membresia membre = new Membresia();
-//                        membre.setId(object.getInt("id"));
-//                        membre.setTipo(object.getString("tipo"));
-//                        membre.setDescripcion(object.getString("Descripcion"));
-//                        membre.setImagen(object.getString("imagen"));
-//                        membre.setDetalles(object.getString("detalles"));
-//                        membre.setImagen_detalles(object.getString("imagen_detalles"));
-
-
                     }
                 } catch (JSONException e) {
                     e.printStackTrace();
@@ -110,23 +113,36 @@ public class MembresiaSeleccionada extends AppCompatActivity {
                 Log.d("Error", error.toString());
             }
         });
-//        JsonObjectRequest jsonObjectRequest = new JsonObjectRequest(Request.Method.POST, "http://limpi.mipantano.com/api/membresia",
-//                datos, new Response.Listener<JSONObject>() {
-//            @Override
-//            public void onResponse(JSONObject response) {
-//                Log.d("Res ",response.toString());
-//                Gson gson = new Gson();
-//                Type type = new  TypeToken< List<Membresia> >(){}.getType();
-//                List<Membresia> lp = gson.fromJson(response.toString(),type);
-//                Toast.makeText(MembresiaSeleccionada.this, "Valor "+lp.get(0).getPrecio().toString(), Toast.LENGTH_SHORT).show();
-//            }
-//        }, new Response.ErrorListener() {
-//            @Override
-//            public void onErrorResponse(VolleyError error) {
-//                        Log.d("Error",error.toString());
-//            }
-//        });
+
         RequestQueue queue = Volley.newRequestQueue(this);
         queue.add(jsonArrayRequest);
+
+        pagar.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                progressDialog = new ProgressDialog(MembresiaSeleccionada.this);
+                progressDialog.setMessage("Cargando, por favor espere....");
+                progressDialog.setTitle("Pago");
+                progressDialog.setProgressStyle(ProgressDialog.STYLE_HORIZONTAL);
+                progressDialog.show();
+                JsonArrayRequest jsonArrayRequest = new JsonArrayRequest(Request.Method.POST, "http://limpi.mipantano.com/api/pagar_membresia",
+                        data, new Response.Listener<JSONArray>() {
+                    @Override
+                    public void onResponse(JSONArray response) {
+                      Log.d("Membresia",response.toString());
+                        progressDialog.dismiss();
+                        Toast.makeText(MembresiaSeleccionada.this, "Membresia comprada con exito!!", Toast.LENGTH_SHORT).show();
+                    }
+                }, new Response.ErrorListener() {
+                    @Override
+                    public void onErrorResponse(VolleyError error) {
+                        Log.d("Error", error.toString());
+                    }
+                });
+
+                RequestQueue queue = Volley.newRequestQueue(MembresiaSeleccionada.this);
+                queue.add(jsonArrayRequest);
+            }
+        });
     }
 }

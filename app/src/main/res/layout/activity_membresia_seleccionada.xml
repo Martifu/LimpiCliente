@@ -151,7 +151,7 @@
                 android:textColor="#000"/>
 
             <Button
-                android:id="@+id/btniniciar"
+                android:id="@+id/btn_pagar_membre"
                 style="@style/Widget.AppCompat.Button.Borderless.Colored"
                 android:layout_width="280dp"
                 android:layout_height="wrap_content"
