@@ -11,7 +11,8 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/ActionBar">
-        <activity android:name=".ConfirmarPedido"></activity>
+        <activity android:name=".Paypal"></activity>
+        <activity android:name=".ConfirmarPedido" />
         <activity android:name=".Cesto" />
         <activity android:name=".Servicios" />
         <activity android:name=".MembresiaSeleccionada" />
@@ -33,7 +34,7 @@
             android:screenOrientation="portrait" />
         <activity android:name=".Recuperar" />
         <activity android:name=".registro_usuarios" />
-        <activity android:name=".InicioSesion"></activity>
+        <activity android:name=".InicioSesion" />
 
         <meta-data
             android:name="com.facebook.sdk.ApplicationId"

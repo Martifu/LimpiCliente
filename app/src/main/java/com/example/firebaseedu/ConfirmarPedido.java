@@ -101,8 +101,6 @@ public class ConfirmarPedido extends AppCompatActivity implements View.OnClickLi
         });
         RequestQueue queue = Volley.newRequestQueue(this);
         queue.add(jsonArrayRequest);
-
-
     }
 
     @Override
@@ -166,6 +164,16 @@ public class ConfirmarPedido extends AppCompatActivity implements View.OnClickLi
                 RequestQueue queue = Volley.newRequestQueue(this);
                 queue.add(jsonArrayRequest);
                 Log.d("Pedido",Servicios.productos.toString());
+
+
+                Intent paypal = new Intent(this, Paypal.class);
+                paypal.putExtra("Total", total.getText());
+                paypal.putExtra("Uid", uid);
+                startActivity(paypal);
+
+
+
+
             }
             break;
         }
