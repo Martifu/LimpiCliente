@@ -141,24 +141,21 @@ public class ConfirmarPedido extends AppCompatActivity implements View.OnClickLi
                 Servicios.productos.put(fecha_reco);
                 Servicios.productos.put(dire_entr);
 
-                progressDoalog = new ProgressDialog(ConfirmarPedido.this);
-                progressDoalog.setMessage("Cargando, por favor espere....");
-                progressDoalog.setTitle("Pago");
-                progressDoalog.setProgressStyle(ProgressDialog.STYLE_HORIZONTAL);
-                progressDoalog.show();
+
                 JsonArrayRequest jsonArrayRequest = new JsonArrayRequest(Request.Method.POST, "http://limpi.mipantano.com/api/venta",
                         Servicios.productos, new Response.Listener<JSONArray>() {
                     @Override
                     public void onResponse(JSONArray response) {
                         Log.d("Cesto", response.toString());
+                        Toast.makeText(ConfirmarPedido.this, "Servicio comprado con exito!!", Toast.LENGTH_SHORT).show();
 
                     }
                 }, new Response.ErrorListener() {
                     @Override
                     public void onErrorResponse(VolleyError error) {
                         Log.d("Cesto", error.toString());
-                        progressDoalog.dismiss();
-                        Toast.makeText(ConfirmarPedido.this, "Servicio comprado con exito!!", Toast.LENGTH_SHORT).show();
+
+
                     }
                 });
                 RequestQueue queue = Volley.newRequestQueue(this);
@@ -171,8 +168,10 @@ public class ConfirmarPedido extends AppCompatActivity implements View.OnClickLi
                 paypal.putExtra("Uid", uid);
                 startActivity(paypal);
 
-
-
+                Servicios.agregados= new JSONArray();
+                Servicios.productos = new JSONArray();
+                Servicios.total = 0;
+                finish();
 
             }
             break;

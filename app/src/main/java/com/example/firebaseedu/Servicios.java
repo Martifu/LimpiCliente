@@ -38,7 +38,7 @@ import org.json.JSONObject;
 
 public class Servicios extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener,
         EditaPerfil.OnFragmentInteractionListener, MetodosDePago.OnFragmentInteractionListener, Membresias.OnFragmentInteractionListener, PlanchadoFragment.OnFragmentInteractionListener,
-        LavanderiaFragment.OnFragmentInteractionListener, TintoreriaFragment.OnFragmentInteractionListener, HogarFragment.OnFragmentInteractionListener {
+        LavanderiaFragment.OnFragmentInteractionListener,  PedidosFragment.OnFragmentInteractionListener,TintoreriaFragment.OnFragmentInteractionListener, HogarFragment.OnFragmentInteractionListener {
 
     DrawerLayout mDrawerLayout;
     Button btn, cesto;
@@ -169,6 +169,11 @@ public class Servicios extends AppCompatActivity implements NavigationView.OnNav
         else if (id == R.id.Membresias)
         {
             fragment = new Membresias();
+            FragmentSelected=true;
+        }
+        else if(id==R.id.listapedidos)
+        {
+            fragment = new PedidosFragment();
             FragmentSelected=true;
         }
         else if (id == R.id.pagos)

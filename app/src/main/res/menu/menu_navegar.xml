@@ -11,7 +11,7 @@
     <item android:id="@+id/Membresias" android:title="Membresías" android:icon="@drawable/ic_memb_svg" android:iconTint="#26DCC4"/>
     <item android:id="@+id/pedidos" android:title="Servicios" android:icon="@drawable/ic_pedidos" android:iconTint="#26DCC4"/>
     <item android:id="@+id/mispedidos" android:title="Mi Cesto" android:icon="@drawable/ic_mis_pedidos" android:iconTint="#26DCC4"/>
-    <!--<item android:id="@+id/llamanos" android:title="Llámanos" android:icon="@drawable/ic_llamanos" android:iconTint="#26DCC4" />-->
+    <item android:id="@+id/listapedidos" android:title="Mis pedidos" android:icon="@drawable/listo" android:iconTint="#26DCC4" />
         <item android:id="@+id/logout" android:title="Cerrar sesión" android:icon="@drawable/ic_power"  android:iconTint="#26DCC4"  />
 
 

@@ -39,7 +39,7 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 public class home extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener,
-    EditaPerfil.OnFragmentInteractionListener, MetodosDePago.OnFragmentInteractionListener, Membresias.OnFragmentInteractionListener
+    EditaPerfil.OnFragmentInteractionListener, MetodosDePago.OnFragmentInteractionListener, Membresias.OnFragmentInteractionListener, PedidosFragment.OnFragmentInteractionListener
 {
     String uri_parse;
     TextView usuario;
@@ -167,6 +167,11 @@ public class home extends AppCompatActivity implements NavigationView.OnNavigati
         else if(id==R.id.pagos)
         {
             fragment = new MetodosDePago();
+            FragmentSelected=true;
+        }
+        else if(id==R.id.listapedidos)
+        {
+            fragment = new PedidosFragment();
             FragmentSelected=true;
         }
         else if (id == R.id.Membresias)

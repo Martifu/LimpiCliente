@@ -1,0 +1,115 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:background="#F3F4F6">
+
+    <android.support.v7.widget.CardView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        app:cardBackgroundColor="#FFF"
+        app:cardCornerRadius="10dp"
+        app:cardElevation="5dp"
+        android:layout_margin="8dp"
+        app:cardPreventCornerOverlap="false"
+        android:id="@+id/card_pedido"
+        >
+        <RelativeLayout
+
+            android:paddingLeft="10dp"
+            android:paddingRight="20dp"
+            android:layout_marginTop="10dp"
+            android:layout_width="match_parent"
+            android:layout_height="80dp">
+
+            <TextView
+                android:textSize="20dp"
+                android:id="@+id/pedidodel"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Pedido del: "
+                android:textColor="#000"/>
+
+            <TextView
+                android:id="@+id/fecha"
+                android:layout_toRightOf="@+id/pedidodel"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="fecha "
+                android:textColor="#000"
+                android:textSize="20dp"/>
+
+            <TextView
+                android:id="@+id/estatus"
+               android:layout_alignParentEnd="true"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Estatus "
+                android:textColor="#FF0000"
+                android:textSize="20dp"/>
+
+            <TextView
+                android:id="@+id/arti"
+                android:layout_marginTop="5dp"
+                android:textStyle="bold"
+               android:layout_below="@+id/pedidodel"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Articulos: "
+                android:textColor="@color/theme_color2"
+                android:textSize="20dp"/>
+            <TextView
+                android:id="@+id/numero_articulos"
+                android:layout_marginTop="5dp"
+                android:textStyle="bold"
+                android:layout_below="@+id/fecha"
+                android:layout_toRightOf="@+id/arti"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="4 "
+                android:textColor="@color/theme_color2"
+                android:textSize="20dp"/>
+
+            <TextView
+                android:id="@+id/tot"
+                android:layout_marginLeft="50dp"
+                android:layout_marginTop="5dp"
+                android:textStyle="bold"
+                android:layout_below="@+id/estatus"
+                android:layout_toRightOf="@+id/numero_articulos"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Total: "
+                android:textColor="@color/theme_color2"
+                android:textSize="20dp"/>
+            <TextView
+                android:id="@+id/total"
+                android:layout_marginTop="5dp"
+                android:textStyle="bold"
+                android:layout_below="@+id/estatus"
+                android:layout_toRightOf="@+id/tot"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="$000 "
+                android:textColor="@color/theme_color2"
+                android:textSize="20dp"/>
+
+            <TextView
+                android:id="@+id/folio"
+                android:layout_marginTop="5dp"
+                android:layout_below="@+id/estatus"
+                android:layout_toRightOf="@+id/total"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="folio "
+                android:textSize="20dp"/>
+
+
+        </RelativeLayout>
+
+
+
+    </android.support.v7.widget.CardView>
+
+</LinearLayout>
