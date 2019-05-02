@@ -3,6 +3,7 @@ package com.example.firebaseedu;
 import android.annotation.SuppressLint;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.util.Log;
 import android.webkit.WebResourceRequest;
 import android.webkit.WebView;
 import android.webkit.WebViewClient;
@@ -20,11 +21,12 @@ public class Paypal extends AppCompatActivity {
 
         paypal = findViewById(R.id.pay);
 
-        String total = getIntent().getExtras().getString("Total");
+        Integer total = getIntent().getExtras().getInt("Total");
         String uid = getIntent().getExtras().getString("Uid");
-
+        paypal.loadUrl("http://limpi.mipantano.com/paypal/"+total+"/"+uid);
+        Log.d("tot",total.toString());
+        Log.d("tot",uid);
         paypal.getSettings().setJavaScriptEnabled(true);
-
         paypal.setWebViewClient(new WebViewClient(){
             @Override
             public boolean shouldOverrideUrlLoading(WebView view, String url) {
@@ -33,7 +35,7 @@ public class Paypal extends AppCompatActivity {
             }
         });
 
-        paypal.loadUrl("http://limpi.mipantano.com/paypal/"+total+"/"+uid);
+
 
 
 

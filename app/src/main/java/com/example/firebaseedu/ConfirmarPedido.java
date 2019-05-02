@@ -37,6 +37,7 @@ public class ConfirmarPedido extends AppCompatActivity implements View.OnClickLi
     TextView total;
     Button pagar;
     String uid;
+    Integer totalchido;
     ProgressDialog progressDoalog;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -81,7 +82,11 @@ public class ConfirmarPedido extends AppCompatActivity implements View.OnClickLi
                 Log.d("total", response.toString());
 
 
-
+                try {
+                    totalchido = (Integer) response.get(0);
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                }
 
 
                 total = findViewById(R.id.total);
@@ -164,7 +169,7 @@ public class ConfirmarPedido extends AppCompatActivity implements View.OnClickLi
 
 
                 Intent paypal = new Intent(this, Paypal.class);
-                paypal.putExtra("Total", total.getText());
+                paypal.putExtra("Total", totalchido);
                 paypal.putExtra("Uid", uid);
                 startActivity(paypal);
 
